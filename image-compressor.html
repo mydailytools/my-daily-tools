@@ -1,132 +1,311 @@
-  
-    
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Image Compressor</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f0f8ff;
-      color: #333;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Compressor - Free & Online</title>
 
-    h1 {
-      color: #007bff;
-    }
+<meta name="description" content="Free image compressor to reduce image size online. Compress images to 50KB, 100KB or using quality compression.">
 
-    .container {
-      background: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0, 123, 255, 0.1);
-      padding: 20px;
-      max-width: 500px;
-      width: 100%;
-      text-align: center;
-    }
+<style>
+:root{
+  --blue:#4f5fbf;
+  --green:#0a7f6d;
+  --light:#f7f8ff;
+}
+body{font-family:Arial;background:var(--light);margin:0}
+header{background:var(--blue);height:12px}
 
-    input[type="file"] {
-      margin: 15px 0;
-    }
+.container{
+  max-width:900px;
+  margin:40px auto;
+  background:#fff;
+  padding:30px;
+  border-radius:8px;
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
+  text-align:center;
+}
 
-    img {
-      max-width: 100%;
-      margin-top: 15px;
-      border-radius: 10px;
-    }
+.drop-area{
+  border:2px dashed #9aa5e6;
+  padding:35px;
+  border-radius:8px;
+  margin:20px 0;
+}
+.drop-area button{
+  background:var(--green);
+  color:#fff;border:none;
+  padding:10px 25px;
+  border-radius:5px;
+  cursor:pointer;
+}
+input[type=file]{display:none}
 
-    button {
-      margin-top: 15px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+.controls{margin:15px 0}
+input[type=number]{padding:8px;width:90px}
+label{margin:0 10px}
 
-    button:hover {
-      background-color: #0056b3;
-    }
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
+  margin-top:25px;
+}
 
-    @media (max-width: 600px) {
-      .container {
-        padding: 15px;
-      }
-    }
-  </style>
+.card{
+  border:2px dashed #9aa5e6;
+  padding:15px;
+  border-radius:8px;
+  font-size:14px;
+}
+.card img{
+  max-width:120px;
+  border-radius:6px;
+  margin:8px auto;
+  display:block;
+}
+
+.badge{font-size:13px;margin-bottom:8px}
+
+button.action{
+  background:var(--blue);
+  color:#fff;border:none;
+  padding:8px 18px;
+  border-radius:5px;
+  cursor:pointer;
+}
+
+.note{margin-top:15px;font-weight:bold}
+
+/* ===== GREEN TAGS (Pi7 STYLE) ===== */
+.seo-tag{
+  background:#e8f5e9;
+  color:#2e7d32;
+  padding:2px 6px;
+  border-radius:4px;
+  font-size:14px;
+  font-weight:500;
+}
+
+/* ===== SEO ARTICLE ===== */
+.seo-content{
+  margin-top:60px;
+  text-align:left;
+  border-top:2px solid #eee;
+  padding-top:30px;
+  line-height:1.7;
+}
+.seo-content h2,.seo-content h3{color:#222}
+</style>
 </head>
+
 <body>
-  <h1>Image Compressor</h1>
-  <div class="container">
-    <input type="file" id="upload" accept="image/*" />
-    <div id="previewContainer">
-      <img id="preview" src="" alt="Preview" style="display:none;" />
-    </div>
-    <button id="compressBtn" style="display:none;">Compress & Download</button>
-  </div>
+<header></header>
 
-  <script>
-    const upload = document.getElementById('upload');
-    const preview = document.getElementById('preview');
-    const compressBtn = document.getElementById('compressBtn');
+<div class="container">
 
-    upload.addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function (event) {
-          preview.src = event.target.result;
-          preview.style.display = 'block';
-          compressBtn.style.display = 'inline-block';
-        };
-        reader.readAsDataURL(file);
-      }
-    });
+<h1>Image Compressor - Free & Online</h1>
+<p>Compress images to specific KB size or by quality without losing much quality.</p>
 
-    compressBtn.addEventListener('click', () => {
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
-      const img = new Image();
-      img.src = preview.src;
+<div class="drop-area">
+  <p>Select Or Drag & Drop Images Here</p>
+  <button onclick="fileInput.click()">Select Images</button>
+  <input type="file" id="fileInput" accept="image/*" multiple>
+</div>
 
-      img.onload = () => {
-        const scale = 0.5; // Compress to 50% size
-        canvas.width = img.width * scale;
-        canvas.height = img.height * scale;
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+<div class="controls">
+  <label>
+    <input type="radio" name="mode" value="size" checked>
+    Specific Size (Ex:- 50kb)
+  </label>
 
-        canvas.toBlob((blob) => {
-          const link = document.createElement('a');
-          link.href = URL.createObjectURL(blob);
-          link.download = 'compressed-image.jpg';
-          link.click();
-        }, 'image/jpeg', 0.7); // JPEG format with 70% quality
-      };
-    });
-  </script>
- <script type="text/javascript">
-  atOptions = {
-  	'key' : 'bf3cdecbb27a589d44cd329b5a63b0c0',
-  	'format' : 'iframe',
-  	'height' : 50,
-  	'width' : 320,
-  	'params' : {}
+  <label>
+    <input type="radio" name="mode" value="quality">
+    Quality Compression
+  </label>
+</div>
+
+<div class="controls">
+  Size:
+  <input type="number" id="targetKB" value="50"> KB
+</div>
+
+<button class="action" onclick="compressAll()">Compress</button>
+
+<div class="cards" id="cards"></div>
+
+<div class="note">Note:- You can compress 10 images at once.</div>
+
+<!-- ================= SEO ARTICLE START ================= -->
+
+<section class="seo-content">
+
+<h2>How to Use Image Compressor Without Losing Quality?</h2>
+
+<p>
+Are you struggling to upload images on websites or government portals due to size limits?
+Our <span class="seo-tag">Image Compressor</span> helps you reduce image size quickly and easily
+without noticeable quality loss.
+</p>
+
+<p>
+An image compressor reduces the file size of an image while keeping it visually clear.
+This is useful when platforms require images under
+<span class="seo-tag">50KB</span>,
+<span class="seo-tag">100KB</span>, or
+<span class="seo-tag">200KB</span>.
+</p>
+
+<h3>How to Use Image Compressor</h3>
+
+<ol>
+  <li>
+    Upload images using the
+    <span class="seo-tag">box above</span>.
+  </li>
+
+  <li>
+    Choose
+    <span class="seo-tag">Specific Size</span>
+    or
+    <span class="seo-tag">Quality Compression</span>.
+  </li>
+
+  <li>
+    Enter the required image
+    <span class="seo-tag">size in KB</span>.
+  </li>
+
+  <li>
+    Click on
+    <span class="seo-tag">Compress</span>
+    and wait a few seconds.
+  </li>
+
+  <li>
+    Download the compressed image instantly.
+  </li>
+</ol>
+
+<h3>Why Choose This Image Compressor?</h3>
+
+<ul>
+  <li>Free online image compression tool</li>
+  <li>No signup or login required</li>
+  <li>Supports batch compression (up to 10 images)</li>
+  <li>Secure browser-based processing</li>
+  <li>Ideal for forms, websites, and SEO</li>
+</ul>
+
+<h3>Does Image Compression Affect Quality?</h3>
+
+<p>
+This tool uses optimized compression algorithms to reduce image size
+while preserving clarity. Minor quality changes may occur,
+but images remain suitable for web and document uploads.
+</p>
+
+<h3>Why Image Compression Is Important?</h3>
+
+<p>
+Compressed images load faster, improve website speed,
+and help pages rank better on search engines.
+Using an <span class="seo-tag">online image compressor</span>
+is essential for modern websites.
+</p>
+
+<h3>Conclusion</h3>
+
+<p>
+This <span class="seo-tag">free image compressor</span>
+is the perfect solution to reduce image size online.
+Whether you are a student, blogger, or professional,
+this tool saves time and ensures compliance with upload limits.
+</p>
+
+</section>
+
+<!-- ================= SEO ARTICLE END ================= -->
+
+</div>
+
+<script>
+const fileInput = document.getElementById("fileInput");
+const cards = document.getElementById("cards");
+const targetKB = document.getElementById("targetKB");
+
+let files = [];
+
+fileInput.onchange = () => {
+  cards.innerHTML = "";
+  files = [...fileInput.files].slice(0,10);
+
+  files.forEach(file=>{
+    const img = new Image();
+    img.onload = ()=>createCard(file,img);
+    img.src = URL.createObjectURL(file);
+  });
+};
+
+function createCard(file,img){
+  const card = document.createElement("div");
+  card.className = "card";
+  card.innerHTML = `
+    <img src="${img.src}">
+    <div class="badge">Original: ${(file.size/1024).toFixed(1)} KB</div>
+    <input type="text" class="rename" value="${file.name.split('.')[0]}"><br><br>
+    <button class="action">Download</button>
+  `;
+  card.querySelector("button").onclick=()=>{
+    compressSingle(file,img,card);
   };
+  cards.appendChild(card);
+}
+
+function compressAll(){
+  document.querySelectorAll(".card button").forEach(btn=>btn.click());
+}
+
+async function compressSingle(file,img,card){
+  const mode=document.querySelector("input[name=mode]:checked").value;
+  const format=file.type||"image/jpeg";
+
+  const canvas=document.createElement("canvas");
+  canvas.width=img.width;
+  canvas.height=img.height;
+  canvas.getContext("2d").drawImage(img,0,0);
+
+  let blob;
+  if(mode==="quality"){
+    blob=await new Promise(r=>canvas.toBlob(r,format,0.7));
+  }else{
+    blob=await compressToTarget(canvas,format,targetKB.value);
+  }
+
+  const sizeKB=(blob.size/1024).toFixed(1);
+  const url=URL.createObjectURL(blob);
+  const name=card.querySelector(".rename").value||"image";
+
+  card.querySelector(".badge").innerHTML=`Final Size: <b>${sizeKB} KB</b>`;
+  card.querySelector("button").onclick=()=>{
+    const a=document.createElement("a");
+    a.href=url;
+    a.download=name+"."+format.split("/")[1];
+    a.click();
+  };
+}
+
+async function compressToTarget(canvas,format,target){
+  let min=0.1,max=0.95,mid,blob;
+  for(let i=0;i<15;i++){
+    mid=(min+max)/2;
+    blob=await new Promise(r=>canvas.toBlob(r,format,mid));
+    if(blob.size/1024>target) max=mid;
+    else min=mid;
+  }
+  return blob;
+}
 </script>
-<script
-  type="text/javascript"
-  src="https://www.highperformanceformat.com/bf3cdecbb27a589d44cd329b5a63b0c0/invoke.js"
-></script>
+
 </body>
 </html>
-  
-  
-  
