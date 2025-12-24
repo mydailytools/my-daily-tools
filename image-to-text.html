@@ -1,127 +1,292 @@
-  
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Image to Text Tool</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f8ff;
-      color: #000;
-      margin: 0;
-      padding: 0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image to Text – Free OCR Online</title>
 
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 1rem;
-    }
+<meta name="description" content="Convert image to text online using OCR. Extract text from JPG, PNG images securely in your browser. Free & fast image to text tool.">
 
-    h1 {
-      text-align: center;
-      color: #007bff;
-    }
+<style>
+:root{
+  --blue:#4f5fbf;
+  --green:#0a7f6d;
+  --light:#f7f8ff;
+}
+body{
+  font-family:Arial, sans-serif;
+  margin:0;
+  background:#fff;
+}
+header{height:12px;background:var(--blue)}
+.container{
+  max-width:900px;
+  margin:40px auto;
+  padding:30px;
+  text-align:center;
+}
+h1{margin-bottom:5px}
+.subtitle{color:#555;margin-bottom:25px}
 
-    .upload-section {
-      background: #ffffff;
-      border: 2px dashed #007bff;
-      padding: 2rem;
-      text-align: center;
-      border-radius: 10px;
-    }
+/* Upload */
+.drop-area{
+  border:2px dashed #9aa5e6;
+  border-radius:8px;
+  padding:40px;
+}
+.drop-area button{
+  background:var(--green);
+  color:#fff;
+  border:none;
+  padding:12px 30px;
+  border-radius:6px;
+  font-size:16px;
+  cursor:pointer;
+}
+input[type=file]{display:none}
 
-    input[type="file"] {
-      display: none;
-    }
+.section-line{
+  border-top:2px dashed #9aa5e6;
+  margin:30px 0;
+}
 
-    label[for="imageInput"] {
-      background-color: #007bff;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+/* Preview */
+.preview img{
+  max-width:220px;
+  border-radius:8px;
+  margin:15px auto;
+  display:block;
+}
 
-    #output {
-      margin-top: 1rem;
-      background: #e6f0ff;
-      padding: 1rem;
-      border-radius: 5px;
-      white-space: pre-wrap;
-    }
+/* Options */
+.options{margin:20px 0}
+.options select{
+  padding:8px 10px;
+  font-size:15px;
+}
 
-    button.copy-btn {
-      margin-top: 0.5rem;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+/* Buttons */
+button.main{
+  background:var(--blue);
+  color:#fff;
+  border:none;
+  padding:12px 35px;
+  border-radius:6px;
+  font-size:16px;
+  cursor:pointer;
+}
 
-    @media (max-width: 600px) {
-      .container {
-        padding: 0.5rem;
-      }
+/* Loader */
+#loader{
+  display:none;
+  margin-top:15px;
+  color:var(--blue);
+  font-weight:600;
+}
 
-      .upload-section {
-        padding: 1rem;
-      }
-    }
-  </style>
+/* Result */
+textarea{
+  width:100%;
+  min-height:220px;
+  padding:12px;
+  font-size:15px;
+  margin-top:20px;
+  border-radius:6px;
+  border:1px solid #ccc;
+  resize:vertical;
+}
+
+/* Actions */
+.actions{
+  margin-top:15px;
+}
+.actions button{
+  background:#0a7f6d;
+  color:#fff;
+  border:none;
+  padding:10px 18px;
+  border-radius:5px;
+  margin:5px;
+  cursor:pointer;
+}
+
+/* Trust */
+.trust{
+  font-size:14px;
+  color:#555;
+  margin-top:20px;
+}
+
+/* SEO ARTICLE */
+.seo-content{
+  max-width:900px;
+  margin:50px auto;
+  padding:30px;
+  line-height:1.7;
+  border-top:2px solid #eee;
+  text-align:left;
+}
+.seo-content h2,.seo-content h3{color:#222}
+
+/* Green tags (Pi7 style) */
+.seo-tag{
+  background:#e8f5e9;
+  color:#2e7d32;
+  padding:2px 6px;
+  border-radius:4px;
+  font-size:14px;
+  font-weight:500;
+}
+</style>
 </head>
+
 <body>
-  <div class="container">
-    <h1>Image to Text</h1>
-    <div class="upload-section">
-      <label for="imageInput">Upload Image</label>
-      <input type="file" id="imageInput" accept="image/*" />
-    </div>
-    <div id="output" style="display:none;"></div>
-    <button class="copy-btn" style="display:none;" onclick="copyText()">Copy Text</button>
-  </div>
+<header></header>
 
-  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@2.1.4/dist/tesseract.min.js"></script>
-  <script>
-    const imageInput = document.getElementById('imageInput');
-    const output = document.getElementById('output');
-    const copyBtn = document.querySelector('.copy-btn');
+<div class="container">
 
-    imageInput.addEventListener('change', async () => {
-      if (imageInput.files.length === 0) return;
+<h1>Image to Text – Free OCR Online</h1>
+<div class="subtitle">
+Extract text from images instantly using OCR – fast & secure.
+</div>
 
-      const file = imageInput.files[0];
-      const reader = new FileReader();
+<div class="drop-area">
+  <p>Select Or Drag & Drop Image</p>
+  <button onclick="fileInput.click()">Select Image</button>
+  <input type="file" id="fileInput" accept="image/*">
+</div>
 
-      reader.onload = async () => {
-        output.style.display = 'block';
-        output.textContent = 'Processing...';
+<div class="preview" id="preview"></div>
 
-        try {
-          const result = await Tesseract.recognize(reader.result, 'eng');
-          output.textContent = result.data.text;
-          copyBtn.style.display = 'inline-block';
-        } catch (err) {
-          output.textContent = 'Error processing image.';
-          console.error(err);
-        }
-      };
+<div class="section-line"></div>
 
-      reader.readAsDataURL(file);
-    });
+<div class="options">
+  OCR Language:
+  <select id="lang">
+    <option value="eng">English</option>
+    <option value="hin">Hindi</option>
+    <option value="eng+hin">English + Hindi</option>
+  </select>
+</div>
 
-    function copyText() {
-      const text = output.textContent;
-      navigator.clipboard.writeText(text).then(() => {
-        alert('Text copied to clipboard!');
-      });
-    }
-  </script>
+<button class="main" onclick="extractText()">Convert Image to Text</button>
+
+<div id="loader">Extracting text, please wait…</div>
+
+<textarea id="output" placeholder="Extracted text will appear here…"></textarea>
+
+<div class="actions">
+  <button onclick="copyText()">Copy Text</button>
+  <button onclick="downloadText()">Download Text</button>
+</div>
+
+<p class="trust">
+🔒 Your images are processed securely in your browser and are not uploaded to any server.
+</p>
+
+</div>
+
+<!-- ================= SEO ARTICLE ================= -->
+
+<section class="seo-content">
+
+<h2>How to Convert Image to Text Online?</h2>
+
+<p>
+Our <span class="seo-tag">Image to Text</span> tool uses OCR technology to extract readable
+text from images. You can convert scanned documents, photos, or screenshots into editable text.
+</p>
+
+<h3>How to Use Image to Text Tool</h3>
+
+<ol>
+  <li>Upload an image using the <span class="seo-tag">box above</span>.</li>
+  <li>Select the <span class="seo-tag">OCR language</span>.</li>
+  <li>Click on <span class="seo-tag">Convert Image to Text</span>.</li>
+  <li>Copy or download the extracted text.</li>
+</ol>
+
+<h3>Why Use This OCR Tool?</h3>
+
+<ul>
+  <li>Free and easy to use</li>
+  <li>No registration required</li>
+  <li>Supports multiple languages</li>
+  <li>Fast browser-based OCR</li>
+  <li>Secure and private</li>
+</ul>
+
+<h3>Who Can Use Image to Text?</h3>
+
+<p>
+Students, professionals, bloggers, and office workers can use this
+<span class="seo-tag">online OCR tool</span> to save time and avoid manual typing.
+</p>
+
+<h3>Conclusion</h3>
+
+<p>
+This <span class="seo-tag">free image to text converter</span> is the easiest way
+to extract text from images online. Try it now and convert images to editable text in seconds.
+</p>
+
+</section>
+
+<!-- ================= END ================= -->
+
+<!-- Tesseract.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
+<script>
+const fileInput=document.getElementById("fileInput");
+const preview=document.getElementById("preview");
+const output=document.getElementById("output");
+const loader=document.getElementById("loader");
+
+let selectedFile=null;
+
+fileInput.onchange=()=>{
+  const file=fileInput.files[0];
+  if(!file) return;
+  selectedFile=file;
+
+  const img=document.createElement("img");
+  img.src=URL.createObjectURL(file);
+  preview.innerHTML="";
+  preview.appendChild(img);
+};
+
+async function extractText(){
+  if(!selectedFile) return alert("Please select an image first.");
+  output.value="";
+  loader.style.display="block";
+
+  const lang=document.getElementById("lang").value;
+
+  const { data:{ text } } = await Tesseract.recognize(
+    selectedFile,
+    lang,
+    { logger: m => {} }
+  );
+
+  output.value=text.trim();
+  loader.style.display="none";
+}
+
+function copyText(){
+  output.select();
+  document.execCommand("copy");
+  alert("Text copied!");
+}
+
+function downloadText(){
+  const blob=new Blob([output.value],{type:"text/plain"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download="extracted-text.txt";
+  a.click();
+}
+</script>
+
 </body>
 </html>
-  
-  
