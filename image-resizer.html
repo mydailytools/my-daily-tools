@@ -152,6 +152,50 @@ dropArea.addEventListener("drop",e=>{
   e.preventDefault();
   fileInput.files=e.dataTransfer.files;
 });
+  <script>
+const fileInput = document.getElementById("fileInput");
+const dropArea = document.getElementById("dropArea");
+const preview = document.getElementById("preview");
+const widthInput = document.getElementById("width");
+const heightInput = document.getElementById("height");
+
+/* ====== PREVIEW ON UPLOAD (Pi7 STYLE) ====== */
+fileInput.addEventListener("change", () => {
+  preview.innerHTML = ""; // clear old preview
+
+  const file = fileInput.files[0];
+  if (!file) return;
+
+  const img = new Image();
+  img.onload = () => {
+    // auto-fill width & height
+    widthInput.value = img.width;
+    heightInput.value = img.height;
+
+    img.style.maxWidth = "220px";
+    img.style.borderRadius = "6px";
+    img.style.display = "block";
+    img.style.margin = "10px auto";
+
+    preview.appendChild(img);
+
+    // show original size text
+    const sizeText = document.createElement("div");
+    sizeText.innerHTML = `
+      <span style="background:#4f5fbf;color:#fff;padding:4px 8px;border-radius:4px">
+        W-${img.width}px
+      </span>
+      <span style="background:#4f5fbf;color:#fff;padding:4px 8px;border-radius:4px;margin-left:5px">
+        H-${img.height}px
+      </span>
+    `;
+    preview.appendChild(sizeText);
+  };
+
+  img.src = URL.createObjectURL(file);
+});
+</script>
+
 
 document.getElementById("resizeBtn").onclick=()=>{
   preview.innerHTML="";
