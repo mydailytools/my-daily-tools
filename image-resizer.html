@@ -1,177 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Image Resizer Tool</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resize Image Pixel Online</title>
 
-  <style>
-    :root {
-      --blue: #2563eb;
-      --blue-light: #3b82f6;
-      --white: #ffffff;
-      --bg: #f8fafc;
-      --border: #e5e7eb;
-    }
+<style>
+:root{
+  --blue:#4f5fbf;
+  --light:#f7f8ff;
+}
+body{
+  font-family: Arial, sans-serif;
+  background: var(--light);
+  margin:0;
+}
+header{
+  background: var(--blue);
+  height:12px;
+}
+.container{
+  max-width:700px;
+  margin:40px auto;
+  background:#fff;
+  padding:30px;
+  border-radius:8px;
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
+  text-align:center;
+}
+h1{
+  margin-bottom:25px;
+}
+.drop-area{
+  border:2px dashed #9aa5e6;
+  padding:30px;
+  border-radius:8px;
+  margin-bottom:20px;
+}
+.drop-area p{
+  margin:0 0 15px;
+  color:#555;
+}
+.drop-area button{
+  background:#0a7f6d;
+  color:#fff;
+  border:none;
+  padding:10px 25px;
+  border-radius:5px;
+  cursor:pointer;
+}
+input[type=file]{display:none;}
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: var(--bg);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 15px;
-    }
-
-    .tool-container {
-      background: var(--white);
-      width: 100%;
-      max-width: 420px;
-      padding: 20px;
-      border-radius: 14px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-      text-align: center;
-    }
-
-    h2 {
-      color: var(--blue);
-      margin-bottom: 15px;
-    }
-
-    input[type="file"] {
-      width: 100%;
-      margin-bottom: 12px;
-    }
-
-    .size-inputs {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-
-    .size-inputs input {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-size: 14px;
-    }
-
-    button {
-      width: 100%;
-      padding: 12px;
-      background: var(--blue);
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-size: 15px;
-      cursor: pointer;
-      margin-top: 8px;
-    }
-
-    button:hover {
-      background: var(--blue-light);
-    }
-
-    .preview {
-      margin-top: 15px;
-    }
-
-    .preview img {
-      max-width: 100%;
-      border-radius: 10px;
-      margin-top: 10px;
-    }
-
-    a.download-btn {
-      display: block;
-      text-decoration: none;
-      background: #10b981;
-      color: white;
-      padding: 12px;
-      border-radius: 10px;
-      margin-top: 12px;
-    }
-
-    a.download-btn:hover {
-      background: #059669;
-    }
-
-    @media (max-width: 480px) {
-      h2 {
-        font-size: 18px;
-      }
-    }
-  </style>
+.controls{
+  margin:15px 0;
+}
+input[type=number]{
+  width:120px;
+  padding:8px;
+  margin:5px;
+}
+label{
+  margin:8px;
+  display:inline-block;
+}
+.output{
+  margin-top:15px;
+}
+button#resizeBtn{
+  margin-top:20px;
+  background:var(--blue);
+  color:#fff;
+  border:none;
+  padding:12px 30px;
+  font-size:16px;
+  border-radius:5px;
+  cursor:pointer;
+}
+.note{
+  margin-top:20px;
+  font-weight:bold;
+}
+.preview img{
+  max-width:100%;
+  margin-top:15px;
+  border-radius:5px;
+}
+@media(max-width:600px){
+  input[type=number]{width:100px;}
+}
+</style>
 </head>
 
 <body>
+<header></header>
 
-  <div class="tool-container">
-    <h2>Image Resizer</h2>
+<div class="container">
+<h1>Resize Image Pixel Online</h1>
 
-    <input type="file" id="upload" accept="image/*">
+<div class="drop-area" id="dropArea">
+  <p>Select Or Drag & Drop Images Here</p>
+  <button onclick="fileInput.click()">Select Images</button>
+  <input type="file" id="fileInput" multiple accept="image/*">
+</div>
 
-    <div class="size-inputs">
-      <input type="number" id="width" placeholder="Width (px)">
-      <input type="number" id="height" placeholder="Height (px)">
-    </div>
+<div class="controls">
+  <label>
+    <input type="checkbox" id="aspect"> Maintain Aspect Ratio
+  </label>
+</div>
 
-    <button onclick="resizeImage()">Resize Image</button>
+<div class="controls">
+  <input type="number" id="width" placeholder="Width (PX)">
+  ×
+  <input type="number" id="height" placeholder="Height (PX)">
+</div>
 
-    <div class="preview" id="preview"></div>
-    <a id="download" class="download-btn" style="display:none;" download="resized-image.png">
-      Download Image
-    </a>
-  </div>
+<div class="controls">
+  <label>
+    <input type="checkbox" id="compress">
+    Compress Image To Specific Size (Ex. 100kb)
+  </label>
+</div>
 
-  <script>
-    const upload = document.getElementById("upload");
-    const preview = document.getElementById("preview");
-    const download = document.getElementById("download");
+<div class="output">
+  Output:
+  <label><input type="radio" name="format" value="image/jpeg" checked> JPEG</label>
+  <label><input type="radio" name="format" value="image/png"> PNG</label>
+  <label><input type="radio" name="format" value="image/webp"> WEBP</label>
+</div>
 
-    function resizeImage() {
-      const file = upload.files[0];
-      if (!file) {
-        alert("Please upload an image");
-        return;
+<button id="resizeBtn">Resize Image</button>
+
+<div class="preview" id="preview"></div>
+
+<div class="note">Note:- You can resize 10 images at once.</div>
+</div>
+
+<script>
+const fileInput=document.getElementById("fileInput");
+const dropArea=document.getElementById("dropArea");
+const preview=document.getElementById("preview");
+
+dropArea.addEventListener("dragover",e=>{
+  e.preventDefault();
+  dropArea.style.background="#eef1ff";
+});
+dropArea.addEventListener("dragleave",()=>{
+  dropArea.style.background="";
+});
+dropArea.addEventListener("drop",e=>{
+  e.preventDefault();
+  fileInput.files=e.dataTransfer.files;
+});
+
+document.getElementById("resizeBtn").onclick=()=>{
+  preview.innerHTML="";
+  [...fileInput.files].slice(0,10).forEach(file=>{
+    const img=new Image();
+    img.onload=()=>{
+      let w=+width.value||img.width;
+      let h=+height.value||img.height;
+      if(aspect.checked){
+        h=img.height*(w/img.width);
       }
+      const canvas=document.createElement("canvas");
+      canvas.width=w; canvas.height=h;
+      const ctx=canvas.getContext("2d");
+      ctx.drawImage(img,0,0,w,h);
 
-      const width = document.getElementById("width").value;
-      const height = document.getElementById("height").value;
+      const format=document.querySelector("input[name=format]:checked").value;
+      const quality=compress.checked?0.7:0.92;
+      const dataURL=canvas.toDataURL(format,quality);
 
-      if (!width || !height) {
-        alert("Please enter width and height");
-        return;
-      }
+      const outImg=new Image();
+      outImg.src=dataURL;
+      preview.appendChild(outImg);
 
-      const img = new Image();
-      const reader = new FileReader();
-
-      reader.onload = function (e) {
-        img.src = e.target.result;
-      };
-
-      img.onload = function () {
-        const canvas = document.createElement("canvas");
-        canvas.width = width;
-        canvas.height = height;
-
-        const ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0, width, height);
-
-        const resizedData = canvas.toDataURL("image/png");
-
-        preview.innerHTML = `<img src="${resizedData}" alt="Resized Image">`;
-        download.href = resizedData;
-        download.style.display = "block";
-      };
-
-      reader.readAsDataURL(file);
-    }
-  </script>
-
+      const a=document.createElement("a");
+      a.href=dataURL;
+      a.download="resized-image";
+      a.textContent="Download Image";
+      a.style.display="block";
+      preview.appendChild(a);
+    };
+    img.src=URL.createObjectURL(file);
+  });
+};
+</script>
 </body>
 </html>
