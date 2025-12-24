@@ -1,120 +1,177 @@
-  
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>Image Resizer Tool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
+    :root {
+      --blue: #2563eb;
+      --blue-light: #3b82f6;
+      --white: #ffffff;
+      --bg: #f8fafc;
+      --border: #e5e7eb;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background-color: #e6f0ff;
-      color: #003366;
       margin: 0;
-      padding: 0;
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 15px;
     }
 
-    .container {
-      max-width: 600px;
-      margin: 2rem auto;
-      padding: 1rem;
-      background-color: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    h1 {
-      text-align: center;
-      color: #007bff;
-    }
-
-    input[type="file"], input[type="number"] {
-      display: block;
+    .tool-container {
+      background: var(--white);
       width: 100%;
-      margin: 1rem 0;
-      padding: 0.5rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+      max-width: 420px;
+      padding: 20px;
+      border-radius: 14px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      text-align: center;
     }
 
-    canvas {
-      max-width: 100%;
-      margin-top: 1rem;
+    h2 {
+      color: var(--blue);
+      margin-bottom: 15px;
+    }
+
+    input[type="file"] {
+      width: 100%;
+      margin-bottom: 12px;
+    }
+
+    .size-inputs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .size-inputs input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
     }
 
     button {
-      background-color: #007bff;
-      color: white;
-      padding: 0.7rem;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
       width: 100%;
-      margin-top: 1rem;
+      padding: 12px;
+      background: var(--blue);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 8px;
     }
 
     button:hover {
-      background-color: #0056b3;
+      background: var(--blue-light);
     }
 
-    @media (max-width: 600px) {
-      .container {
-        margin: 1rem;
-        padding: 1rem;
+    .preview {
+      margin-top: 15px;
+    }
+
+    .preview img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    a.download-btn {
+      display: block;
+      text-decoration: none;
+      background: #10b981;
+      color: white;
+      padding: 12px;
+      border-radius: 10px;
+      margin-top: 12px;
+    }
+
+    a.download-btn:hover {
+      background: #059669;
+    }
+
+    @media (max-width: 480px) {
+      h2 {
+        font-size: 18px;
       }
     }
   </style>
 </head>
+
 <body>
-  <div class="container">
-    <h1>Image Resizer</h1>
-    <input type="file" id="upload" accept="image/*" />
-    <input type="number" id="width" placeholder="Width (px)" />
-    <input type="number" id="height" placeholder="Height (px)" />
+
+  <div class="tool-container">
+    <h2>Image Resizer</h2>
+
+    <input type="file" id="upload" accept="image/*">
+
+    <div class="size-inputs">
+      <input type="number" id="width" placeholder="Width (px)">
+      <input type="number" id="height" placeholder="Height (px)">
+    </div>
+
     <button onclick="resizeImage()">Resize Image</button>
-    <canvas id="canvas"></canvas>
-    <a id="downloadLink" style="display:none;" download="resized-image.png">Download Resized Image</a>
+
+    <div class="preview" id="preview"></div>
+    <a id="download" class="download-btn" style="display:none;" download="resized-image.png">
+      Download Image
+    </a>
   </div>
 
   <script>
-    let originalImage = new Image();
-
-    document.getElementById('upload').addEventListener('change', function(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        originalImage.src = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    });
+    const upload = document.getElementById("upload");
+    const preview = document.getElementById("preview");
+    const download = document.getElementById("download");
 
     function resizeImage() {
-      const width = parseInt(document.getElementById('width').value);
-      const height = parseInt(document.getElementById('height').value);
-      const canvas = document.getElementById('canvas');
-      const ctx = canvas.getContext('2d');
-
-      if (!width || !height || isNaN(width) || isNaN(height)) {
-        alert("Please enter valid width and height.");
+      const file = upload.files[0];
+      if (!file) {
+        alert("Please upload an image");
         return;
       }
 
-      canvas.width = width;
-      canvas.height = height;
+      const width = document.getElementById("width").value;
+      const height = document.getElementById("height").value;
 
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(originalImage, 0, 0, width, height);
+      if (!width || !height) {
+        alert("Please enter width and height");
+        return;
+      }
 
-      const downloadLink = document.getElementById('downloadLink');
-      downloadLink.href = canvas.toDataURL();
-      downloadLink.style.display = 'block';
-      downloadLink.textContent = 'Download Resized Image';
+      const img = new Image();
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        img.src = e.target.result;
+      };
+
+      img.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, width, height);
+
+        const resizedData = canvas.toDataURL("image/png");
+
+        preview.innerHTML = `<img src="${resizedData}" alt="Resized Image">`;
+        download.href = resizedData;
+        download.style.display = "block";
+      };
+
+      reader.readAsDataURL(file);
     }
   </script>
+
 </body>
 </html>
-
-  
-  
