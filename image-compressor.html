@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Image Compressor - Free & Online</title>
+<title>Image Compressor – Free & Online</title>
 
-<meta name="description" content="Free image compressor to reduce image size online. Compress images to 50KB, 100KB or using quality compression.">
+<meta name="description" content="Compress images online to specific size like 50KB or by quality. Fast, free and secure image compressor.">
 
 <style>
 :root{
@@ -13,89 +13,132 @@
   --green:#0a7f6d;
   --light:#f7f8ff;
 }
-body{font-family:Arial;background:var(--light);margin:0}
-header{background:var(--blue);height:12px}
-
+body{
+  font-family:Arial, sans-serif;
+  margin:0;
+  background:#fff;
+}
+header{
+  height:12px;
+  background:var(--blue);
+}
 .container{
   max-width:900px;
   margin:40px auto;
-  background:#fff;
   padding:30px;
-  border-radius:8px;
-  box-shadow:0 8px 20px rgba(0,0,0,.08);
   text-align:center;
 }
+h1{margin-bottom:5px}
+.subtitle{color:#555;margin-bottom:25px}
 
 .drop-area{
   border:2px dashed #9aa5e6;
-  padding:35px;
   border-radius:8px;
-  margin:20px 0;
+  padding:40px;
 }
 .drop-area button{
   background:var(--green);
-  color:#fff;border:none;
-  padding:10px 25px;
-  border-radius:5px;
+  color:#fff;
+  border:none;
+  padding:12px 30px;
+  border-radius:6px;
+  font-size:16px;
   cursor:pointer;
 }
 input[type=file]{display:none}
 
-.controls{margin:15px 0}
-input[type=number]{padding:8px;width:90px}
-label{margin:0 10px}
+.section-line{
+  border-top:2px dashed #9aa5e6;
+  margin:30px 0;
+}
+
+.options{
+  margin:25px 0;
+}
+.options label{
+  margin:0 15px;
+  font-size:16px;
+}
+.size-box{
+  margin:15px 0;
+}
+.size-box input{
+  padding:8px;
+  width:90px;
+  font-size:16px;
+}
+
+button.main{
+  background:var(--blue);
+  color:#fff;
+  border:none;
+  padding:12px 35px;
+  border-radius:6px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+#loader{
+  display:none;
+  margin-top:15px;
+  color:var(--blue);
+  font-weight:600;
+}
 
 .cards{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:15px;
-  margin-top:25px;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:20px;
+  margin-top:30px;
 }
 
 .card{
-  border:2px dashed #9aa5e6;
-  padding:15px;
+  border:2px solid var(--blue);
   border-radius:8px;
-  font-size:14px;
+  padding:15px;
 }
 .card img{
   max-width:120px;
   border-radius:6px;
-  margin:8px auto;
-  display:block;
+  margin-bottom:8px;
 }
 
-.badge{font-size:13px;margin-bottom:8px}
+.info-box{
+  background:#3b6f95;
+  color:#fff;
+  padding:10px;
+  border-radius:6px;
+  font-size:13px;
+  text-align:left;
+  line-height:1.5;
+  margin-bottom:10px;
+}
 
-button.action{
+.card input[type=text]{
+  width:90%;
+  padding:6px;
+  margin-bottom:8px;
+}
+
+.card button{
   background:var(--blue);
-  color:#fff;border:none;
-  padding:8px 18px;
+  color:#fff;
+  border:none;
+  padding:8px 20px;
   border-radius:5px;
   cursor:pointer;
 }
 
-.note{margin-top:15px;font-weight:bold}
+.note{
+  margin-top:25px;
+  font-weight:bold;
+}
 
-/* ===== GREEN TAGS (Pi7 STYLE) ===== */
-.seo-tag{
-  background:#e8f5e9;
-  color:#2e7d32;
-  padding:2px 6px;
-  border-radius:4px;
+.trust{
   font-size:14px;
-  font-weight:500;
+  color:#555;
+  margin-top:20px;
 }
-
-/* ===== SEO ARTICLE ===== */
-.seo-content{
-  margin-top:60px;
-  text-align:left;
-  border-top:2px solid #eee;
-  padding-top:30px;
-  line-height:1.7;
-}
-.seo-content h2,.seo-content h3{color:#222}
 </style>
 </head>
 
@@ -104,8 +147,10 @@ button.action{
 
 <div class="container">
 
-<h1>Image Compressor - Free & Online</h1>
-<p>Compress images to specific KB size or by quality without losing much quality.</p>
+<h1>Image Compressor – Free & Online</h1>
+<div class="subtitle">
+Reduce image size to 50KB, 100KB or by quality – fast & secure.
+</div>
 
 <div class="drop-area">
   <p>Select Or Drag & Drop Images Here</p>
@@ -113,197 +158,122 @@ button.action{
   <input type="file" id="fileInput" accept="image/*" multiple>
 </div>
 
-<div class="controls">
+<div class="section-line"></div>
+
+<div class="options">
   <label>
     <input type="radio" name="mode" value="size" checked>
-    Specific Size (Ex:- 50kb)
+    Specific Size (Ex:- 50KB)
   </label>
-
   <label>
     <input type="radio" name="mode" value="quality">
     Quality Compression
   </label>
 </div>
 
-<div class="controls">
+<div class="size-box">
   Size:
   <input type="number" id="targetKB" value="50"> KB
 </div>
 
-<button class="action" onclick="compressAll()">Compress</button>
+<button class="main" onclick="compressAll()">Compress Image</button>
+
+<div id="loader">Processing image, please wait…</div>
 
 <div class="cards" id="cards"></div>
 
-<div class="note">Note:- You can compress 10 images at once.</div>
+<div class="note">Note:- You can compress up to 10 images at once.</div>
 
-<!-- ================= SEO ARTICLE START ================= -->
-
-<section class="seo-content">
-
-<h2>How to Use Image Compressor Without Losing Quality?</h2>
-
-<p>
-Are you struggling to upload images on websites or government portals due to size limits?
-Our <span class="seo-tag">Image Compressor</span> helps you reduce image size quickly and easily
-without noticeable quality loss.
+<p class="trust">
+🔒 Your images are processed securely and are not stored on any server.
 </p>
-
-<p>
-An image compressor reduces the file size of an image while keeping it visually clear.
-This is useful when platforms require images under
-<span class="seo-tag">50KB</span>,
-<span class="seo-tag">100KB</span>, or
-<span class="seo-tag">200KB</span>.
-</p>
-
-<h3>How to Use Image Compressor</h3>
-
-<ol>
-  <li>
-    Upload images using the
-    <span class="seo-tag">box above</span>.
-  </li>
-
-  <li>
-    Choose
-    <span class="seo-tag">Specific Size</span>
-    or
-    <span class="seo-tag">Quality Compression</span>.
-  </li>
-
-  <li>
-    Enter the required image
-    <span class="seo-tag">size in KB</span>.
-  </li>
-
-  <li>
-    Click on
-    <span class="seo-tag">Compress</span>
-    and wait a few seconds.
-  </li>
-
-  <li>
-    Download the compressed image instantly.
-  </li>
-</ol>
-
-<h3>Why Choose This Image Compressor?</h3>
-
-<ul>
-  <li>Free online image compression tool</li>
-  <li>No signup or login required</li>
-  <li>Supports batch compression (up to 10 images)</li>
-  <li>Secure browser-based processing</li>
-  <li>Ideal for forms, websites, and SEO</li>
-</ul>
-
-<h3>Does Image Compression Affect Quality?</h3>
-
-<p>
-This tool uses optimized compression algorithms to reduce image size
-while preserving clarity. Minor quality changes may occur,
-but images remain suitable for web and document uploads.
-</p>
-
-<h3>Why Image Compression Is Important?</h3>
-
-<p>
-Compressed images load faster, improve website speed,
-and help pages rank better on search engines.
-Using an <span class="seo-tag">online image compressor</span>
-is essential for modern websites.
-</p>
-
-<h3>Conclusion</h3>
-
-<p>
-This <span class="seo-tag">free image compressor</span>
-is the perfect solution to reduce image size online.
-Whether you are a student, blogger, or professional,
-this tool saves time and ensures compliance with upload limits.
-</p>
-
-</section>
-
-<!-- ================= SEO ARTICLE END ================= -->
 
 </div>
 
 <script>
-const fileInput = document.getElementById("fileInput");
-const cards = document.getElementById("cards");
-const targetKB = document.getElementById("targetKB");
+const fileInput=document.getElementById("fileInput");
+const cards=document.getElementById("cards");
+const targetKB=document.getElementById("targetKB");
+const loader=document.getElementById("loader");
 
-let files = [];
+let files=[];
 
-fileInput.onchange = () => {
-  cards.innerHTML = "";
-  files = [...fileInput.files].slice(0,10);
+fileInput.onchange=()=>{
+  cards.innerHTML="";
+  files=[...fileInput.files].slice(0,10);
 
   files.forEach(file=>{
-    const img = new Image();
-    img.onload = ()=>createCard(file,img);
-    img.src = URL.createObjectURL(file);
+    const img=new Image();
+    img.onload=()=>createCard(file,img);
+    img.src=URL.createObjectURL(file);
   });
 };
 
 function createCard(file,img){
-  const card = document.createElement("div");
-  card.className = "card";
-  card.innerHTML = `
+  const card=document.createElement("div");
+  card.className="card";
+
+  const sizeMB=(file.size/1024/1024).toFixed(2);
+
+  card.innerHTML=`
     <img src="${img.src}">
-    <div class="badge">Original: ${(file.size/1024).toFixed(1)} KB</div>
-    <input type="text" class="rename" value="${file.name.split('.')[0]}"><br><br>
-    <button class="action">Download</button>
+    <div class="info-box">
+      <div><b>Size:</b> ${sizeMB} MB</div>
+      <div><b>Width:</b> ${img.naturalWidth} PX</div>
+      <div><b>Height:</b> ${img.naturalHeight} PX</div>
+    </div>
+    <input type="text" value="${file.name.split('.')[0]}">
+    <button>Download</button>
   `;
+
   card.querySelector("button").onclick=()=>{
     compressSingle(file,img,card);
   };
+
   cards.appendChild(card);
 }
 
 function compressAll(){
-  document.querySelectorAll(".card button").forEach(btn=>btn.click());
+  loader.style.display="block";
+  setTimeout(()=>{
+    document.querySelectorAll(".card button").forEach(btn=>btn.click());
+    loader.style.display="none";
+  },1200);
 }
 
-async function compressSingle(file,img,card){
+function compressSingle(file,img,card){
   const mode=document.querySelector("input[name=mode]:checked").value;
-  const format=file.type||"image/jpeg";
-
   const canvas=document.createElement("canvas");
-  canvas.width=img.width;
-  canvas.height=img.height;
+  canvas.width=img.naturalWidth;
+  canvas.height=img.naturalHeight;
   canvas.getContext("2d").drawImage(img,0,0);
 
-  let blob;
-  if(mode==="quality"){
-    blob=await new Promise(r=>canvas.toBlob(r,format,0.7));
-  }else{
-    blob=await compressToTarget(canvas,format,targetKB.value);
-  }
+  let quality=0.9;
+  let dataURL;
 
-  const sizeKB=(blob.size/1024).toFixed(1);
-  const url=URL.createObjectURL(blob);
-  const name=card.querySelector(".rename").value||"image";
+  do{
+    dataURL=canvas.toDataURL("image/jpeg",quality);
+    quality-=0.05;
+  }while(
+    mode==="size" &&
+    (dataURL.length/1024)>targetKB.value &&
+    quality>0.1
+  );
 
-  card.querySelector(".badge").innerHTML=`Final Size: <b>${sizeKB} KB</b>`;
+  const finalKB=(dataURL.length/1024).toFixed(1);
+
+  card.querySelector(".info-box").innerHTML=`
+    <div><b>Final Size:</b> ${finalKB} KB</div>
+    <div><b>Width:</b> ${canvas.width} PX</div>
+    <div><b>Height:</b> ${canvas.height} PX</div>
+  `;
+
   card.querySelector("button").onclick=()=>{
     const a=document.createElement("a");
-    a.href=url;
-    a.download=name+"."+format.split("/")[1];
+    a.href=dataURL;
+    a.download=card.querySelector("input").value+".jpg";
     a.click();
   };
-}
-
-async function compressToTarget(canvas,format,target){
-  let min=0.1,max=0.95,mid,blob;
-  for(let i=0;i<15;i++){
-    mid=(min+max)/2;
-    blob=await new Promise(r=>canvas.toBlob(r,format,mid));
-    if(blob.size/1024>target) max=mid;
-    else min=mid;
-  }
-  return blob;
 }
 </script>
 
