@@ -28,19 +28,15 @@ header{
   box-shadow:0 8px 20px rgba(0,0,0,.08);
   text-align:center;
 }
-h1{
-  margin-bottom:25px;
-}
+h1{margin-bottom:25px}
+
 .drop-area{
   border:2px dashed #9aa5e6;
   padding:30px;
   border-radius:8px;
   margin-bottom:20px;
 }
-.drop-area p{
-  margin:0 0 15px;
-  color:#555;
-}
+.drop-area p{margin:0 0 15px;color:#555}
 .drop-area button{
   background:#0a7f6d;
   color:#fff;
@@ -49,23 +45,16 @@ h1{
   border-radius:5px;
   cursor:pointer;
 }
-input[type=file]{display:none;}
+input[type=file]{display:none}
 
-.controls{
-  margin:15px 0;
-}
+.controls{margin:15px 0}
 input[type=number]{
   width:120px;
   padding:8px;
   margin:5px;
 }
-label{
-  margin:8px;
-  display:inline-block;
-}
-.output{
-  margin-top:15px;
-}
+label{margin:8px;display:inline-block}
+
 button#resizeBtn{
   margin-top:20px;
   background:var(--blue);
@@ -76,17 +65,26 @@ button#resizeBtn{
   border-radius:5px;
   cursor:pointer;
 }
-.note{
-  margin-top:20px;
-  font-weight:bold;
-}
+
 .preview img{
-  max-width:100%;
-  margin-top:15px;
-  border-radius:5px;
+  max-width:220px;
+  border-radius:6px;
+  margin:10px auto;
+  display:block;
 }
+.size-badge span{
+  background:#4f5fbf;
+  color:#fff;
+  padding:4px 8px;
+  border-radius:4px;
+  margin:3px;
+  display:inline-block;
+}
+
+.note{margin-top:20px;font-weight:bold}
+
 @media(max-width:600px){
-  input[type=number]{width:100px;}
+  input[type=number]{width:100px}
 }
 </style>
 </head>
@@ -100,8 +98,10 @@ button#resizeBtn{
 <div class="drop-area" id="dropArea">
   <p>Select Or Drag & Drop Images Here</p>
   <button onclick="fileInput.click()">Select Images</button>
-  <input type="file" id="fileInput" multiple accept="image/*">
+  <input type="file" id="fileInput" accept="image/*">
 </div>
+
+<div class="preview" id="preview"></div>
 
 <div class="controls">
   <label>
@@ -118,11 +118,11 @@ button#resizeBtn{
 <div class="controls">
   <label>
     <input type="checkbox" id="compress">
-    Compress Image To Specific Size (Ex. 100kb)
+    Compress Image To Specific Size
   </label>
 </div>
 
-<div class="output">
+<div class="controls">
   Output:
   <label><input type="radio" name="format" value="image/jpeg" checked> JPEG</label>
   <label><input type="radio" name="format" value="image/png"> PNG</label>
@@ -131,104 +131,90 @@ button#resizeBtn{
 
 <button id="resizeBtn">Resize Image</button>
 
-<div class="preview" id="preview"></div>
-
 <div class="note">Note:- You can resize 10 images at once.</div>
 </div>
 
 <script>
-const fileInput=document.getElementById("fileInput");
-const dropArea=document.getElementById("dropArea");
-const preview=document.getElementById("preview");
-
-dropArea.addEventListener("dragover",e=>{
-  e.preventDefault();
-  dropArea.style.background="#eef1ff";
-});
-dropArea.addEventListener("dragleave",()=>{
-  dropArea.style.background="";
-});
-dropArea.addEventListener("drop",e=>{
-  e.preventDefault();
-  fileInput.files=e.dataTransfer.files;
-});
-  <script>
 const fileInput = document.getElementById("fileInput");
 const dropArea = document.getElementById("dropArea");
 const preview = document.getElementById("preview");
 const widthInput = document.getElementById("width");
 const heightInput = document.getElementById("height");
+const aspect = document.getElementById("aspect");
 
-/* ====== PREVIEW ON UPLOAD (Pi7 STYLE) ====== */
-fileInput.addEventListener("change", () => {
-  preview.innerHTML = ""; // clear old preview
+/* ===== Drag & Drop ===== */
+dropArea.addEventListener("dragover", e=>{
+  e.preventDefault();
+  dropArea.style.background="#eef1ff";
+});
+dropArea.addEventListener("dragleave", ()=>{
+  dropArea.style.background="";
+});
+dropArea.addEventListener("drop", e=>{
+  e.preventDefault();
+  dropArea.style.background="";
+  fileInput.files = e.dataTransfer.files;
+  showPreview();
+});
 
+/* ===== Preview on Upload (Pi7 Style) ===== */
+fileInput.addEventListener("change", showPreview);
+
+function showPreview(){
+  preview.innerHTML="";
   const file = fileInput.files[0];
-  if (!file) return;
+  if(!file) return;
 
   const img = new Image();
-  img.onload = () => {
-    // auto-fill width & height
+  img.onload = ()=>{
     widthInput.value = img.width;
     heightInput.value = img.height;
 
-    img.style.maxWidth = "220px";
-    img.style.borderRadius = "6px";
-    img.style.display = "block";
-    img.style.margin = "10px auto";
-
     preview.appendChild(img);
 
-    // show original size text
-    const sizeText = document.createElement("div");
-    sizeText.innerHTML = `
-      <span style="background:#4f5fbf;color:#fff;padding:4px 8px;border-radius:4px">
-        W-${img.width}px
-      </span>
-      <span style="background:#4f5fbf;color:#fff;padding:4px 8px;border-radius:4px;margin-left:5px">
-        H-${img.height}px
-      </span>
+    const badge = document.createElement("div");
+    badge.className="size-badge";
+    badge.innerHTML = `
+      <span>W-${img.width}px</span>
+      <span>H-${img.height}px</span>
     `;
-    preview.appendChild(sizeText);
+    preview.appendChild(badge);
   };
-
   img.src = URL.createObjectURL(file);
-});
-</script>
+}
 
+/* ===== Resize ===== */
+document.getElementById("resizeBtn").onclick = ()=>{
+  if(!fileInput.files.length) return alert("Select image first");
 
-document.getElementById("resizeBtn").onclick=()=>{
-  preview.innerHTML="";
-  [...fileInput.files].slice(0,10).forEach(file=>{
-    const img=new Image();
-    img.onload=()=>{
-      let w=+width.value||img.width;
-      let h=+height.value||img.height;
-      if(aspect.checked){
-        h=img.height*(w/img.width);
-      }
-      const canvas=document.createElement("canvas");
-      canvas.width=w; canvas.height=h;
-      const ctx=canvas.getContext("2d");
-      ctx.drawImage(img,0,0,w,h);
+  const img = new Image();
+  img.onload = ()=>{
+    let w = +widthInput.value || img.width;
+    let h = +heightInput.value || img.height;
 
-      const format=document.querySelector("input[name=format]:checked").value;
-      const quality=compress.checked?0.7:0.92;
-      const dataURL=canvas.toDataURL(format,quality);
+    if(aspect.checked){
+      h = img.height * (w / img.width);
+    }
 
-      const outImg=new Image();
-      outImg.src=dataURL;
-      preview.appendChild(outImg);
+    const canvas = document.createElement("canvas");
+    canvas.width = w;
+    canvas.height = h;
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(img,0,0,w,h);
 
-      const a=document.createElement("a");
-      a.href=dataURL;
-      a.download="resized-image";
-      a.textContent="Download Image";
-      a.style.display="block";
-      preview.appendChild(a);
-    };
-    img.src=URL.createObjectURL(file);
-  });
+    const format = document.querySelector("input[name=format]:checked").value;
+    const quality = document.getElementById("compress").checked ? 0.7 : 0.92;
+    const url = canvas.toDataURL(format, quality);
+
+    preview.innerHTML = `
+      <img src="${url}">
+      <a href="${url}" download="resized-image"
+         style="display:block;margin-top:10px;color:#4f5fbf;font-weight:bold">
+         Download Image
+      </a>
+    `;
+  };
+  img.src = URL.createObjectURL(fileInput.files[0]);
 };
 </script>
 </body>
