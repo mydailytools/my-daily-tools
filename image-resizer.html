@@ -3,45 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Resize Image Pixel Online</title>
+
+<title>Resize Image Pixel Online – Free Image Resizer Tool</title>
+
+<meta name="description" content="Resize image in pixels online without losing quality. Free image resizer tool to resize up to 10 images at once with exact width and height.">
+<meta name="keywords" content="resize image pixels, image resizer online, resize image without losing quality, pixel image resize tool">
 
 <style>
-:root{
-  --blue:#4f5fbf;
-  --light:#f7f8ff;
-}
-body{font-family:Arial;background:var(--light);margin:0}
+:root{--blue:#4f5fbf;--light:#f7f8ff}
+body{font-family:Arial;background:var(--light);margin:0;line-height:1.6}
 header{background:var(--blue);height:12px}
 .container{
-  max-width:720px;margin:40px auto;background:#fff;
-  padding:30px;border-radius:8px;text-align:center;
+  max-width:900px;margin:40px auto;background:#fff;
+  padding:30px;border-radius:8px;
   box-shadow:0 8px 20px rgba(0,0,0,.08)
 }
+h1,h2,h3{color:#222}
 .drop-area{
-  border:2px dashed #9aa5e6;padding:30px;border-radius:8px
+  border:2px dashed #9aa5e6;padding:30px;
+  border-radius:8px;text-align:center
 }
 .drop-area button{
   background:#0a7f6d;color:#fff;border:none;
   padding:10px 25px;border-radius:5px
 }
 input[type=file]{display:none}
-input[type=number],input[type=text]{
-  padding:8px;width:130px;margin:5px
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;margin-top:20px
 }
-.preview img{
-  max-width:200px;border-radius:6px;margin:10px auto;display:block
-}
-.badge span{
-  background:#4f5fbf;color:#fff;padding:4px 8px;
-  border-radius:4px;margin:3px;display:inline-block
-}
-.final-card{
+.card{
   border:2px dashed #9aa5e6;
-  padding:25px;border-radius:8px;margin-top:20px
+  padding:15px;border-radius:8px;
+  font-size:14px;text-align:center
 }
+.card img{max-width:120px;border-radius:6px;margin:5px auto}
+input[type=number],input[type=text]{padding:6px;width:90px}
 button{
   background:var(--blue);color:#fff;border:none;
-  padding:12px 30px;border-radius:5px;cursor:pointer
+  padding:8px 18px;border-radius:5px;cursor:pointer
+}
+.note{margin-top:15px;font-weight:bold;text-align:center}
+.seo-content{
+  margin-top:60px;
+  border-top:2px solid #eee;
+  padding-top:30px
 }
 </style>
 </head>
@@ -50,130 +57,151 @@ button{
 <header></header>
 
 <div class="container">
-<h2>Resize Image Pixel Online</h2>
+
+<h1>Resize Image Pixel Online</h1>
 
 <div class="drop-area">
-  <p>Select Image</p>
-  <button onclick="fileInput.click()">Select Image</button>
-  <input type="file" id="fileInput" accept="image/*">
+  <p>Select Or Drag & Drop Images (Max 10)</p>
+  <button onclick="fileInput.click()">Select Images</button>
+  <input type="file" id="fileInput" accept="image/*" multiple>
 </div>
 
-<div class="preview" id="preview"></div>
+<div class="cards" id="cards"></div>
 
-<div>
-  <input type="number" id="width" placeholder="Width (PX)">
-  ×
-  <input type="number" id="height" placeholder="Height (PX)">
-</div>
+<div class="note">Note:- You can resize 10 images at once.</div>
 
-<div>
-  <label><input type="checkbox" id="aspect"> Maintain Aspect Ratio</label>
-</div>
+<!-- ================= SEO CONTENT START ================= -->
 
-<div>
-  Output:
-  <label><input type="radio" name="format" value="image/jpeg" checked> JPEG</label>
-  <label><input type="radio" name="format" value="image/png"> PNG</label>
-  <label><input type="radio" name="format" value="image/webp"> WEBP</label>
-</div>
+<section class="seo-content">
 
-<button onclick="generateFinal()">Resize Image</button>
+<h2>How to Resize an Image in Pixels Without Losing Quality?</h2>
 
-<div id="finalResult"></div>
+<p>
+Resizing images in pixels is essential for websites, social media, online forms, and digital platforms.
+Large images can slow down websites and affect SEO performance. Using a proper image size improves
+page speed and user experience.
+</p>
+
+<p>
+An image is made up of pixels. When you resize an image in pixels, you change its width and height
+while keeping the visual quality intact. This tool helps you resize images accurately without distortion.
+</p>
+
+<h3>What Is Pixel-Based Image Resizing?</h3>
+
+<p>
+Pixel-based resizing means adjusting an image to exact dimensions such as 300×300, 600×400,
+or 1024×768 pixels. This method is commonly used for blog images, thumbnails, banners, and profile photos.
+</p>
+
+<h3>How to Resize Images Using This Tool?</h3>
+
+<ol>
+  <li>Select or drag and drop up to 10 images.</li>
+  <li>Preview images appear automatically.</li>
+  <li>Enter your desired width and height in pixels.</li>
+  <li>Resize and download images instantly.</li>
+</ol>
+
+<h3>Can I Resize Multiple Images at Once?</h3>
+
+<p>
+Yes. This image resizer allows batch processing of up to 10 images at the same time.
+Each image can be resized individually, renamed, and downloaded separately.
+</p>
+
+<h3>Does Resizing Reduce Image Quality?</h3>
+
+<p>
+No. This tool uses modern browser technology to resize images efficiently with minimal quality loss.
+Images remain sharp and optimized for web use.
+</p>
+
+<h3>Benefits of Using This Image Resizer Tool</h3>
+
+<ul>
+  <li>Free and easy to use</li>
+  <li>No login or registration required</li>
+  <li>Fast image processing</li>
+  <li>Secure – images stay in your browser</li>
+  <li>Mobile and desktop friendly</li>
+  <li>SEO-optimized image output</li>
+</ul>
+
+<h3>Why Image Size Matters for SEO?</h3>
+
+<p>
+Optimized images help websites load faster. Faster websites rank better on Google and provide
+a better user experience. Proper pixel resizing improves Core Web Vitals and reduces bounce rate.
+</p>
+
+<h3>Supported Image Formats</h3>
+
+<p>
+This tool supports JPG, PNG, and WEBP formats, making it suitable for all modern web requirements.
+</p>
+
+<h3>Final Words</h3>
+
+<p>
+This free online Image Resizer Tool helps you resize images in pixels quickly and efficiently.
+Whether you are a blogger, student, designer, or developer, this tool saves time and improves productivity.
+</p>
+
+</section>
+
+<!-- ================= SEO CONTENT END ================= -->
+
 </div>
 
 <script>
-const fileInput = document.getElementById("fileInput");
-const preview = document.getElementById("preview");
-const widthInput = document.getElementById("width");
-const heightInput = document.getElementById("height");
-const aspect = document.getElementById("aspect");
-const finalResult = document.getElementById("finalResult");
+const fileInput=document.getElementById("fileInput");
+const cards=document.getElementById("cards");
 
-let originalImg = new Image();
-let originalName = "image";
-
-fileInput.onchange = () => {
-  const file = fileInput.files[0];
-  if(!file) return;
-
-  originalName = file.name.split(".")[0];
-
-  originalImg = new Image();
-  originalImg.onload = () => {
-    widthInput.value = originalImg.width;
-    heightInput.value = originalImg.height;
-    updatePreview();
-  };
-  originalImg.src = URL.createObjectURL(file);
+fileInput.onchange=()=>{
+  cards.innerHTML="";
+  [...fileInput.files].slice(0,10).forEach(file=>{
+    const img=new Image();
+    img.onload=()=>createCard(file,img);
+    img.src=URL.createObjectURL(file);
+  });
 };
 
-widthInput.oninput = updatePreview;
-heightInput.oninput = updatePreview;
-aspect.onchange = updatePreview;
-
-function updatePreview(){
-  if(!originalImg.src) return;
-
-  let w = +widthInput.value || originalImg.width;
-  let h = +heightInput.value || originalImg.height;
-
-  if(aspect.checked){
-    h = originalImg.height * (w / originalImg.width);
-    heightInput.value = Math.round(h);
-  }
-
-  const canvas = document.createElement("canvas");
-  canvas.width = w;
-  canvas.height = h;
-  canvas.getContext("2d").drawImage(originalImg,0,0,w,h);
-
-  preview.innerHTML = `
-    <img src="${canvas.toDataURL()}">
-    <div class="badge">
-      <span>W-${w}px</span>
-      <span>H-${h}px</span>
-    </div>
+function createCard(file,img){
+  const card=document.createElement("div");
+  card.className="card";
+  card.innerHTML=`
+    <img src="${img.src}">
+    <p>W-${img.width}px | H-${img.height}px</p>
+    <input type="number" value="${img.width}" class="w"> ×
+    <input type="number" value="${img.height}" class="h"><br><br>
+    <input type="text" class="name" value="${file.name.split('.')[0]}"><br><br>
+    <button>Resize & Download</button>
   `;
+  card.querySelector("button").onclick=()=>{
+    resizeAndDownload(
+      img,
+      card.querySelector(".w").value,
+      card.querySelector(".h").value,
+      card.querySelector(".name").value,
+      file.type
+    );
+  };
+  cards.appendChild(card);
 }
 
-function generateFinal(){
-  const canvas = document.createElement("canvas");
-  canvas.width = widthInput.value;
-  canvas.height = heightInput.value;
-  canvas.getContext("2d").drawImage(
-    originalImg,0,0,canvas.width,canvas.height
-  );
-
-  const format = document.querySelector("input[name=format]:checked").value;
-
+function resizeAndDownload(img,w,h,name,format){
+  const canvas=document.createElement("canvas");
+  canvas.width=w; canvas.height=h;
+  canvas.getContext("2d").drawImage(img,0,0,w,h);
   canvas.toBlob(blob=>{
-    const sizeKB = (blob.size / 1024).toFixed(1);
-    const url = URL.createObjectURL(blob);
-
-    finalResult.innerHTML = `
-      <div class="final-card">
-        <img src="${url}" style="max-width:80px"><br>
-        <strong>${originalName}.${format.split("/")[1]}</strong><br>
-        Size: ${sizeKB} KB<br><br>
-
-        Rename Image<br>
-        <input type="text" id="rename" value="${originalName}"><br><br>
-
-        <button onclick="downloadFinal('${url}','${format}')">Download</button>
-      </div>
-    `;
-  }, format, 0.92);
-}
-
-function downloadFinal(url, format){
-  const name =
-    document.getElementById("rename").value || "image";
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = name + "." + format.split("/")[1];
-  a.click();
+    const a=document.createElement("a");
+    a.href=URL.createObjectURL(blob);
+    a.download=name+"."+format.split("/")[1];
+    a.click();
+  },format,0.92);
 }
 </script>
+
 </body>
 </html>
