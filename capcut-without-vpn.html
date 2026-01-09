@@ -37,6 +37,23 @@
       color:#94a3b8;
       margin-top:15px;
     }
+    .ad-mobile,
+.ad-desktop{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin:20px 0;
+}
+
+/* Default: desktop show */
+.ad-mobile{ display:none; }
+
+/* Mobile view */
+@media (max-width:768px){
+  .ad-desktop{ display:none; }
+  .ad-mobile{ display:flex; }
+}
   </style>
 </head>
 <body>
@@ -56,15 +73,33 @@
     ⚠️ We do not host any files. This page is for educational purposes only.
   </p>
 </div>
-<script>
-  atOptions = {
-    'key' : 'bf3cdecbb27a589d44cd329b5a63b0c0',
-    'format' : 'iframe',
-    'height' : 50,
-    'width' : 320,
-    'params' : {}
-  };
-</script>
-<script src="https://www.highperformanceformat.com/bf3cdecbb27a589d44cd329b5a63b0c0/invoke.js"></script>
+<!-- MOBILE AD -->
+<div class="ad-mobile">
+  <script>
+    atOptions = {
+      'key' : 'bf3cdecb27a589d44cd329b5a63b0c0',
+      'format' : 'iframe',
+      'height' : 50,
+      'width' : 320,
+      'params' : {}
+    };
+  </script>
+  <script src="https://www.highperformanceformat.com/bf3cdecb27a589d44cd329b5a63b0c0/invoke.js"></script>
+</div>
+
+<!-- DESKTOP AD -->
+<div class="ad-desktop">
+  <script>
+    atOptions = {
+      'key' : 'bf3cdecb27a589d44cd329b5a63b0c0',
+      'format' : 'iframe',
+      'height' : 90,
+      'width' : 728,
+      'params' : {}
+    };
+  </script>
+  <script src="https://www.highperformanceformat.com/bf3cdecb27a589d44cd329b5a63b0c0/invoke.js"></script>
+</div>
+
 </body>
 </html>
