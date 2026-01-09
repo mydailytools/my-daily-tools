@@ -1,106 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>CapCutPro without VPN Download</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Download CapCut Pro – No Watermark, All Effects Unlocked">
+<meta charset="UTF-8">
+<title>CapCutPro without VPN Download</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body{
-      font-family: Arial, sans-serif;
-      background:#0f172a;
-      color:#fff;
-      text-align:center;
-      padding:40px 15px;
-      margin:0;
-    }
-    .card{
-      max-width:420px;
-      margin:0 auto 20px;
-      background:#020617;
-      padding:25px;
-      border-radius:12px;
-    }
-    h1{color:#38bdf8;}
-    p{color:#cbd5f5;font-size:15px;}
-    .btn{
-      display:inline-block;
-      margin-top:20px;
-      padding:14px 30px;
-      background:#22c55e;
-      color:#000;
-      text-decoration:none;
-      font-weight:bold;
-      border-radius:30px;
-    }
-    .note{
-      font-size:12px;
-      color:#94a3b8;
-      margin-top:15px;
-    }
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#0f172a;
+  color:#fff;
+  text-align:center;
+  padding:40px 15px;
+  margin:0;
+}
+.card{
+  max-width:420px;
+  margin:0 auto 20px;
+  background:#020617;
+  padding:25px;
+  border-radius:12px;
+}
+h1{color:#38bdf8;}
+p{color:#cbd5f5;font-size:15px;}
+.btn{
+  display:inline-block;
+  margin-top:20px;
+  padding:14px 30px;
+  background:#22c55e;
+  color:#000;
+  text-decoration:none;
+  font-weight:bold;
+  border-radius:30px;
+}
+.note{
+  font-size:12px;
+  color:#94a3b8;
+  margin-top:15px;
+}
 
-    /* ===== ADS ===== */
-    .ad-mobile,
-    .ad-desktop{
-      width:100%;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      margin:20px 0;
-    }
+/* ADS */
+.ad-mobile,.ad-desktop{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin:20px 0;
+}
 
-    /* default desktop */
-    .ad-mobile{ display:none; }
-
-    /* mobile */
-    @media (max-width:768px){
-      .ad-desktop{ display:none; }
-      .ad-mobile{ display:flex; }
-    }
-  </style>
+.ad-mobile{display:none;}
+</style>
 </head>
 
 <body>
 
-  <!-- CONTENT CARD -->
-  <div class="card">
-    <h1>CapCut Pro without VPN 🔥</h1>
-    <p>
-      ✔ No Watermark <br>
-      ✔ Pro Effects Unlocked <br>
-      ✔ Trending Version <br>
-      ✔ Without VPN
-    </p>
+<div class="card">
+  <h1>CapCut Pro without VPN 🔥</h1>
+  <p>
+    ✔ No Watermark <br>
+    ✔ Pro Effects Unlocked <br>
+    ✔ Trending Version <br>
+    ✔ Without VPN
+  </p>
 
-    <a href="go-capcut-without-vpn.html" class="btn">Download Now</a>
+  <a href="go-capcut-without-vpn.html" class="btn">Download Now</a>
 
-    <p class="note">
-      ⚠️ We do not host any files. This page is for educational purposes only.
-    </p>
-  </div>
+  <p class="note">
+    ⚠️ We do not host any files. Educational purpose only.
+  </p>
+</div>
 
-  <!-- MOBILE AD -->
-  <div class="ad-mobile">
+<!-- MOBILE AD -->
+<div class="ad-mobile" id="mobileAd">
   <script>
-  atOptions = {
-    'key' : 'bf3cdecbb27a589d44cd329b5a63b0c0',
-    'format' : 'iframe',
-    'height' : 50,
-    'width' : 320,
-    'params' : {}
-  };
-</script>
-<script src="https://www.highperformanceformat.com/bf3cdecbb27a589d44cd329b5a63b0c0/invoke.js"></script>
-  </div>
+    atOptions = {
+      'key' : 'bf3cdecbb27a589d44cd329b5a63b0c0',
+      'format' : 'iframe',
+      'height' : 50,
+      'width' : 320,
+      'params' : {}
+    };
+  </script>
+  <script src="https://www.highperformanceformat.com/bf3cdecbb27a589d44cd329b5a63b0c0/invoke.js"></script>
+</div>
 
-  <!-- DESKTOP AD -->
-  <div class="ad-desktop">
-    <script async data-cfasync="false"
-      src="https://pl28306816.effectivegatecpm.com/27f0023227af0d8509bd4b7d53bb0b65/invoke.js">
-    </script>
-    <div id="container-27f0023227af0d8509bd4b7d53bb0b65"></div>
-  </div>
+<!-- DESKTOP AD -->
+<div class="ad-desktop" id="desktopAd">
+  <script async data-cfasync="false"
+    src="https://pl28306816.effectivegatecpm.com/27f0023227af0d8509bd4b7d53bb0b65/invoke.js">
+  </script>
+  <div id="container-27f0023227af0d8509bd4b7d53bb0b65"></div>
+</div>
+
+<script>
+/* FORCE DEVICE DETECTION */
+if (window.innerWidth <= 768) {
+  document.getElementById("mobileAd").style.display = "flex";
+  document.getElementById("desktopAd").style.display = "none";
+} else {
+  document.getElementById("desktopAd").style.display = "flex";
+  document.getElementById("mobileAd").style.display = "none";
+}
+</script>
 
 </body>
 </html>
