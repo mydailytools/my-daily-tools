@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Preparing...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="go-style.css">
+</head>
+<body>
+
+<div class="wrapper">
+  <div class="card">
+    <h1>Preparing your access...</h1>
+    <div class="fire">🔥</div>
+    <p>Please wait <span id="count">5</span> seconds</p>
+  </div>
+</div>
+
+<script>
+let t = 5;
+const c = document.getElementById("count");
+
+setInterval(() => {
+  t--;
+  c.innerText = t;
+  if (t === 0) {
+    window.location.href = "https://cricfy.pro";
+  }
+}, 1000);
+</script>
+
+</body>
+</html>
