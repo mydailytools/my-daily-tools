@@ -4,31 +4,110 @@
   <meta charset="UTF-8">
   <title>Cricfy Live Cricket</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="capcut-style.css">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, #0b1a33, #050b18);
+      font-family: Arial, sans-serif;
+      color: #fff;
+    }
+
+    .card {
+      background: linear-gradient(180deg, #050b18, #020615);
+      padding: 45px 55px;
+      border-radius: 20px;
+      text-align: center;
+      max-width: 480px;
+      width: 90%;
+      box-shadow: 0 0 45px rgba(0,0,0,0.85);
+    }
+
+    .card h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      color: #38bdf8;
+    }
+
+    .fire {
+      font-size: 42px;
+      margin: 12px 0 20px;
+      animation: pulse 1.3s infinite;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 30px;
+      text-align: left;
+      display: inline-block;
+    }
+
+    ul li {
+      font-size: 17px;
+      margin: 10px 0;
+    }
+
+    ul li::before {
+      content: "✔ ";
+      color: #22c55e;
+      font-weight: bold;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #22c55e;
+      color: #000;
+      padding: 14px 38px;
+      border-radius: 40px;
+      font-size: 18px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #16a34a;
+      transform: scale(1.05);
+    }
+
+    .note {
+      margin-top: 25px;
+      font-size: 14px;
+      color: #cbd5f5;
+      opacity: 0.9;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+  </style>
 </head>
 <body>
 
-<div class="container">
   <div class="card">
     <h1>Cricfy Live Cricket</h1>
     <div class="fire">🔥</div>
 
     <ul>
-      <li>✔ Live Match Scores</li>
-      <li>✔ Fast Updates</li>
-      <li>✔ Free Access</li>
-      <li>✔ No Login Required</li>
+      <li>Live Match Scores</li>
+      <li>Fast Updates</li>
+      <li>Free Access</li>
+      <li>No Login Required</li>
     </ul>
 
-    <a href="go-cricfy.html" class="download-btn">
-      Open Cricfy
-    </a>
+    <a href="go-cricfy.html" class="btn">Open Cricfy</a>
 
-    <p class="note">
+    <div class="note">
       ⚠ We do not host any files. This page is for educational purposes only.
-    </p>
+    </div>
   </div>
-</div>
 
 </body>
 </html>
