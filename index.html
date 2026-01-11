@@ -541,6 +541,21 @@
   text-decoration: underline;
 }
 
+         /* ===== Featured CapCut + Cricfy row ===== */
+.featured-tools {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  gap: 25px;
+  max-width: 700px;
+  margin: 40px auto;
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+  .featured-tools {
+    grid-template-columns: 1fr;
+  }
+}
 
     </style>
 </head>
@@ -681,31 +696,35 @@
         </div>
     </section>
 
-<div class="tool-card capcut-center">
-  <div class="tool-icon-container">
-    <i class="fas fa-video"></i>
+<!-- Featured Tools Row -->
+<div class="featured-tools">
+
+  <!-- CapCut -->
+  <div class="tool-card">
+    <div class="tool-icon-container">
+      <i class="fas fa-video"></i>
+    </div>
+    <h3>CapCut without vpn</h3>
+    <p>
+      Download CapCut without vpn <br>
+      No Watermark • Without VPN
+    </p>
+    <a href="capcut-without-vpn.html" class="tool-button">Use Tool</a>
   </div>
-  <h3>CapCut without vpn</h3>
-  <p>
-    Download CapCut without vpn <br>
-    No Watermark • Without VPN
-  </p>
-  <a href="capcut-without-vpn.html" class="tool-button">Use Tool</a>
-</div>
-     <!-- Cricfy Tool Card -->
-<div class="tool-card">
-  <div class="tool-icon-container">
-    <i class="fas fa-baseball-ball"></i>
+
+  <!-- Cricfy -->
+  <div class="tool-card">
+    <div class="tool-icon-container">
+      <i class="fas fa-baseball-ball"></i>
+    </div>
+    <h3>Cricfy</h3>
+    <p>
+      Live Cricket Scores <br>
+      Fast • Free • Real Time
+    </p>
+    <a href="cricfy.html" class="tool-button">Use Tool</a>
   </div>
 
-  <h3>Cricfy</h3>
-
-  <p>
-    Live Cricket Scores <br>
-    Fast • Free • Real Time
-  </p>
-
-  <a href="cricfy.html" class="tool-button">Use Tool</a>
 </div>
 
     
