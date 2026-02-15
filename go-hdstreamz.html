@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Preparing Download - HD Streamz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, #0b1a33, #050b18);
+      font-family: Arial, sans-serif;
+      color: #fff;
+    }
+
+    .wait-card {
+      background: linear-gradient(180deg, #050b18, #020615);
+      padding: 45px 50px;
+      border-radius: 18px;
+      text-align: center;
+      max-width: 420px;
+      width: 90%;
+      box-shadow: 0 0 40px rgba(0,0,0,0.8);
+    }
+
+    .wait-card h1 {
+      font-size: 26px;
+      margin-bottom: 10px;
+      color: #38bdf8;
+    }
+
+    .fire {
+      font-size: 40px;
+      margin: 15px 0;
+      animation: pulse 1.2s infinite;
+    }
+
+    .text {
+      font-size: 17px;
+      color: #cfd8ff;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wait-card">
+    <h1>Preparing HD Streamz Download...</h1>
+    <div class="fire">📺🔥</div>
+    <p class="text">
+      Please wait <b><span id="count">7</span></b> seconds
+    </p>
+  </div>
+
+  <script>
+    let t = 7;
+    const c = document.getElementById("count");
+
+    const timer = setInterval(() => {
+      t--;
+      c.innerText = t;
+      if (t <= 0) {
+        clearInterval(timer);
+
+        // 👇 Yahan apna HD Streamz APK release link paste karo
+        window.location.href = "PASTE_YOUR_HD_STREAMZ_APK_LINK_HERE";
+      }
+    }, 1000);
+  </script>
+
+</body>
+</html>
