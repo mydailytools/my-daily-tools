@@ -38,7 +38,9 @@
             font-family: 'Exo 2', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
-        html { scroll-behavior: smooth; }
+        html {
+            scroll-behavior: smooth;
+        }
 
         body {
             background-color: #080e1a;
@@ -47,6 +49,7 @@
             overflow-x: hidden;
         }
 
+        /* ===== ANIMATED BACKGROUND ===== */
         body::before {
             content: '';
             position: fixed;
@@ -66,6 +69,7 @@
             100% { opacity: 1; }
         }
 
+        /* Floating particles */
         .particles {
             position: fixed;
             top: 0; left: 0;
@@ -130,13 +134,16 @@
         .logo:hover {
             text-shadow: 0 0 30px rgba(0,212,255,1), 0 0 60px rgba(0,212,255,0.5);
         }
-        .logo span { color: #e2e8f0; }
+        .logo span {
+            color: #e2e8f0;
+        }
         
         nav ul {
             display: flex;
             list-style: none;
             gap: 25px;
         }
+        
         nav ul li a {
             text-decoration: none;
             color: #94a3b8;
@@ -155,8 +162,12 @@
             transition: width 0.3s ease;
             box-shadow: 0 0 8px var(--neon);
         }
-        nav ul li a:hover { color: var(--neon); }
-        nav ul li a:hover::after { width: 100%; }
+        nav ul li a:hover {
+            color: var(--neon);
+        }
+        nav ul li a:hover::after {
+            width: 100%;
+        }
         
         .contact-email {
             display: flex;
@@ -165,7 +176,9 @@
             color: #64748b;
             font-size: 14px;
         }
-        .contact-email i { color: var(--neon); }
+        .contact-email i {
+            color: var(--neon);
+        }
         
         .mobile-menu-btn {
             display: none;
@@ -181,71 +194,9 @@
             background: linear-gradient(135deg, #050b18 0%, #0a1628 40%, #0d1f3c 100%);
             color: var(--white);
             padding: 100px 0 120px;
+            text-align: center;
             position: relative;
             overflow: hidden;
-        }
-
-        /* Hero inner: text left, image right */
-        .hero-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 40px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-content {
-            flex: 1;
-            text-align: left;
-            max-width: 620px;
-        }
-
-        /* ===== HERO PNG CUTOUT IMAGE ===== */
-        .hero-image-wrap {
-            flex-shrink: 0;
-            width: 340px;
-            position: relative;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            /* Extend image down to bottom of hero */
-            align-self: flex-end;
-            margin-bottom: -120px; /* pull down to hero bottom edge */
-        }
-
-        .hero-image-wrap img {
-            width: 100%;
-            max-width: 340px;
-            height: auto;
-            object-fit: contain;
-            object-position: bottom;
-            display: block;
-            /* Glow effect under the cutout */
-            filter: drop-shadow(0 0 30px rgba(0,212,255,0.35))
-                    drop-shadow(0 0 60px rgba(37,99,235,0.2));
-            animation: heroImgFloat 4s ease-in-out infinite;
-            transform-origin: bottom center;
-        }
-
-        @keyframes heroImgFloat {
-            0%, 100% { transform: translateY(0px); filter: drop-shadow(0 0 30px rgba(0,212,255,0.35)) drop-shadow(0 0 60px rgba(37,99,235,0.2)); }
-            50%       { transform: translateY(-14px); filter: drop-shadow(0 0 45px rgba(0,212,255,0.55)) drop-shadow(0 0 80px rgba(37,99,235,0.3)); }
-        }
-
-        /* Glow circle behind image */
-        .hero-image-wrap::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 260px;
-            height: 60px;
-            background: radial-gradient(ellipse, rgba(0,212,255,0.25) 0%, transparent 70%);
-            border-radius: 50%;
-            z-index: -1;
-            animation: heroImgFloat 4s ease-in-out infinite;
         }
 
         .hero::before {
@@ -270,6 +221,7 @@
             to   { transform: rotate(360deg); }
         }
 
+        /* 3D grid floor effect */
         .hero::after {
             content: '';
             position: absolute;
@@ -317,6 +269,8 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: titleGlow 3s ease-in-out infinite alternate;
+            position: relative;
+            z-index: 2;
         }
         @keyframes titleGlow {
             0% { filter: drop-shadow(0 0 10px rgba(0,212,255,0.3)); }
@@ -325,10 +279,12 @@
         
         .hero p {
             font-size: 1.1rem;
-            max-width: 550px;
-            margin: 0 0 35px;
+            max-width: 700px;
+            margin: 0 auto 35px;
             opacity: 0.8;
             color: #94a3b8;
+            position: relative;
+            z-index: 2;
         }
         
         .cta-button {
@@ -363,14 +319,19 @@
             transform: translateY(-4px) scale(1.05);
             box-shadow: 0 0 40px rgba(37,99,235,0.8), 0 0 80px rgba(0,212,255,0.4);
         }
-        .cta-button:hover::before { opacity: 1; }
+        .cta-button:hover::before {
+            opacity: 1;
+        }
         
         .tool-icons {
             display: flex;
-            justify-content: flex-start;
-            gap: 16px;
+            justify-content: center;
+            gap: 20px;
             flex-wrap: wrap;
-            max-width: 500px;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
         
         .tool-icon {
@@ -423,7 +384,9 @@
             margin-right: auto;
         }
         
-        .search-container { padding: 0 5px; }
+        .search-container {
+            padding: 0 5px;
+        }
         
         .search-bar {
             display: flex;
@@ -444,7 +407,9 @@
             color: #e2e8f0;
             font-family: 'Exo 2', sans-serif;
         }
-        .search-bar input::placeholder { color: #475569; }
+        .search-bar input::placeholder {
+            color: #475569;
+        }
         .search-bar input:focus {
             border-color: var(--neon);
             background: rgba(0,212,255,0.05);
@@ -473,14 +438,24 @@
             position: relative;
             z-index: 2;
         }
-        .tools-section:nth-child(odd)  { background: rgba(8,14,26,0.95); }
-        .tools-section:nth-child(even) { background: rgba(10,18,32,0.98); }
-        .tools-section[style*="background-color: #f1f5f9"] { background: rgba(10,18,32,0.98) !important; }
+
+        .tools-section:nth-child(odd) {
+            background: rgba(8,14,26,0.95);
+        }
+        .tools-section:nth-child(even) {
+            background: rgba(10,18,32,0.98);
+        }
+
+        /* Override inline styles */
+        .tools-section[style*="background-color: #f1f5f9"] {
+            background: rgba(10,18,32,0.98) !important;
+        }
         
         .section-header {
             text-align: center;
             margin-bottom: 50px;
         }
+        
         .section-header h2 {
             font-size: 2rem;
             margin-bottom: 12px;
@@ -501,6 +476,7 @@
             border-radius: 2px;
             box-shadow: 0 0 10px var(--neon);
         }
+        
         .section-header p {
             color: #64748b;
             max-width: 600px;
@@ -530,6 +506,7 @@
             transform-style: preserve-3d;
             cursor: pointer;
         }
+
         .tool-card::before {
             content: '';
             position: absolute;
@@ -538,7 +515,10 @@
             background: linear-gradient(90deg, transparent, rgba(0,212,255,0.05), transparent);
             transition: left 0.6s ease;
         }
-        .tool-card:hover::before { left: 100%; }
+        .tool-card:hover::before {
+            left: 100%;
+        }
+
         .tool-card::after {
             content: '';
             position: absolute;
@@ -548,6 +528,7 @@
             opacity: 0;
             transition: opacity 0.4s;
         }
+        
         .tool-card:hover {
             transform: translateY(-10px) rotateX(3deg) rotateY(-2deg) scale(1.02);
             border-color: rgba(0,212,255,0.35);
@@ -557,7 +538,9 @@
                 0 0 60px rgba(0,212,255,0.08),
                 inset 0 1px 0 rgba(255,255,255,0.08);
         }
-        .tool-card:hover::after { opacity: 1; }
+        .tool-card:hover::after {
+            opacity: 1;
+        }
         
         .tool-icon-container {
             width: 52px;
@@ -598,6 +581,7 @@
             position: relative;
             z-index: 1;
         }
+        
         .tool-card p {
             color: #64748b;
             font-size: 0.875rem;
@@ -642,12 +626,14 @@
             z-index: 2;
             box-shadow: 0 -20px 60px rgba(0,0,0,0.5);
         }
+        
         .footer-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
             margin-bottom: 40px;
         }
+        
         .footer-logo {
             font-size: 24px;
             font-weight: 800;
@@ -658,8 +644,16 @@
             font-family: 'Rajdhani', sans-serif;
             text-shadow: 0 0 20px rgba(0,212,255,0.5);
         }
-        .footer-logo span { color: #e2e8f0; }
-        .footer-about p { color: #475569; margin-bottom: 20px; font-size: 0.95rem; }
+        .footer-logo span {
+            color: #e2e8f0;
+        }
+        
+        .footer-about p {
+            color: #475569;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        
         .footer-contact p {
             display: flex;
             align-items: center;
@@ -667,7 +661,10 @@
             margin-bottom: 15px;
             color: #475569;
         }
-        .footer-contact p i { color: var(--neon); }
+        .footer-contact p i {
+            color: var(--neon);
+        }
+
         .footer-contact h3, .footer-links h3 {
             color: var(--neon);
             font-size: 1.1rem;
@@ -676,19 +673,47 @@
             font-weight: 700;
             letter-spacing: 1px;
         }
-        .footer-links ul { list-style: none; }
-        .footer-links ul li { margin-bottom: 10px; }
-        .footer-links ul li a { color: #475569; text-decoration: none; transition: var(--transition); }
-        .footer-links ul li a:hover { color: var(--neon); text-shadow: 0 0 10px rgba(0,212,255,0.4); }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links ul li a {
+            color: #475569;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .footer-links ul li a:hover {
+            color: var(--neon);
+            text-shadow: 0 0 10px rgba(0,212,255,0.4);
+        }
+        
         .footer-bottom {
             background: rgba(4,8,16,0.8);
             border-top: 1px solid rgba(0,212,255,0.08);
             text-align: center;
             padding: 18px 10px;
         }
-        .footer-bottom p { color: #475569; font-size: 14px; margin: 0; }
-        .footer-bottom a { color: #facc15; text-decoration: none; font-weight: 600; text-shadow: 0 0 10px rgba(250,204,21,0.3); }
-        .footer-bottom a:hover { color: #fde047; text-decoration: underline; }
+        .footer-bottom p {
+            color: #475569;
+            font-size: 14px;
+            margin: 0;
+        }
+        .footer-bottom a {
+            color: #facc15;
+            text-decoration: none;
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(250,204,21,0.3);
+        }
+        .footer-bottom a:hover {
+            color: #fde047;
+            text-decoration: underline;
+            text-shadow: 0 0 20px rgba(250,204,21,0.5);
+        }
 
         /* ===== SEARCH RESULTS ===== */
         .search-results {
@@ -703,12 +728,33 @@
             margin-left: auto;
             margin-right: auto;
         }
-        .search-results h3 { margin-bottom: 15px; color: var(--neon); font-family: 'Rajdhani', sans-serif; font-weight: 700; letter-spacing: 1px; }
-        .search-results ul { list-style: none; }
-        .search-results ul li { padding: 10px 0; border-bottom: 1px solid rgba(0,212,255,0.08); }
-        .search-results ul li:last-child { border-bottom: none; }
-        .search-results ul li a { color: #94a3b8; text-decoration: none; transition: var(--transition); font-family: 'Exo 2', sans-serif; }
-        .search-results ul li a:hover { color: var(--neon); }
+        .search-results h3 {
+            margin-bottom: 15px;
+            color: var(--neon);
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .search-results ul {
+            list-style: none;
+        }
+        .search-results ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0,212,255,0.08);
+        }
+        .search-results ul li:last-child {
+            border-bottom: none;
+        }
+        .search-results ul li a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: var(--transition);
+            font-family: 'Exo 2', sans-serif;
+        }
+        .search-results ul li a:hover {
+            color: var(--neon);
+            text-shadow: 0 0 10px rgba(0,212,255,0.4);
+        }
 
         /* ===== FEATURED TOOLS ===== */
         .featured-tools {
@@ -721,27 +767,37 @@
             z-index: 2;
         }
         @media (max-width: 768px) {
-            .featured-tools { grid-template-columns: 1fr; }
+            .featured-tools {
+                grid-template-columns: 1fr;
+            }
         }
 
-        /* ===== SCROLL REVEAL ===== */
+        /* ===== SCROLL REVEAL ANIMATION ===== */
         .tool-card {
             opacity: 0;
             transform: translateY(30px) rotateX(10deg);
             animation: cardReveal 0.6s ease forwards;
         }
+
         @keyframes cardReveal {
-            to { opacity: 1; transform: translateY(0) rotateX(0deg); }
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0deg);
+            }
         }
+
+        /* Stagger cards */
         .tools-grid .tool-card:nth-child(1) { animation-delay: 0.05s; }
         .tools-grid .tool-card:nth-child(2) { animation-delay: 0.1s; }
         .tools-grid .tool-card:nth-child(3) { animation-delay: 0.15s; }
         .tools-grid .tool-card:nth-child(4) { animation-delay: 0.2s; }
         .tools-grid .tool-card:nth-child(5) { animation-delay: 0.25s; }
         .tools-grid .tool-card:nth-child(6) { animation-delay: 0.3s; }
+
         .featured-tools .tool-card:nth-child(1) { animation-delay: 0.1s; }
         .featured-tools .tool-card:nth-child(2) { animation-delay: 0.2s; }
 
+        /* ===== SECTION DIVIDER ===== */
         .section-divider {
             height: 1px;
             background: linear-gradient(90deg, transparent, rgba(0,212,255,0.2), transparent);
@@ -751,26 +807,20 @@
         /* ===== RESPONSIVE ===== */
         @media (max-width: 992px) {
             .hero h1 { font-size: 2.4rem; }
-            .hero-image-wrap { width: 260px; }
+            .tool-icon { width: 55px; height: 55px; font-size: 20px; }
         }
+        
         @media (max-width: 768px) {
             .header-container { flex-direction: column; gap: 15px; }
             nav ul { gap: 15px; }
             .hero { padding: 70px 0 90px; }
-            .hero-inner { flex-direction: column; align-items: center; }
-            .hero-content { text-align: center; max-width: 100%; }
-            .hero-content .tool-icons { justify-content: center; margin: 0 auto; }
-            .hero-content .hero p { margin: 0 auto 35px; }
-            .hero-image-wrap {
-                width: 220px;
-                margin-bottom: -90px;
-                order: -1; /* image on top on mobile */
-            }
             .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
             .tool-icons { gap: 15px; }
             .search-section { margin-top: -30px; }
             .section-header h2 { font-size: 1.6rem; }
         }
+        
         @media (max-width: 576px) {
             .header-container { flex-direction: row; justify-content: space-between; }
             nav { display: none; }
@@ -782,18 +832,51 @@
             .search-bar button { border-radius: 12px; padding: 15px; }
             .tools-grid { grid-template-columns: 1fr; }
             .footer-container { grid-template-columns: 1fr; }
-            .hero-image-wrap { width: 180px; margin-bottom: -70px; }
         }
+         /* HERO RIGHT SIDE IMAGE */
+.hero {
+    position: relative;
+}
+
+.hero-side-img{
+    position: absolute;
+    right: 50px;
+    top: 80px;
+    width: 320px;
+    max-width: 40%;
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(0,212,255,0.3);
+    animation: floatHero 4s ease-in-out infinite;
+    z-index: 2;
+}
+
+/* FLOAT ANIMATION */
+@keyframes floatHero{
+    0%,100%{ transform: translateY(0); }
+    50%{ transform: translateY(-15px); }
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width:768px){
+    .hero-side-img{
+        position: static;
+        display:block;
+        margin: 30px auto 0;
+        max-width: 80%;
+    }
+}
     </style>
 </head>
 <body>
 
+    <!-- Floating particles background -->
     <div class="particles" id="particles"></div>
 
-    <!-- Header — UNCHANGED -->
+    <!-- Header -->
     <header>
         <div class="container header-container">
             <a href="#" class="logo"><span>My Daily Tools</span></a>
+            
             <nav>
                 <ul>
                     <li><a href="#home">Home</a></li>
@@ -801,45 +884,34 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
+            
             <div class="contact-email">
                 <i class="fas fa-envelope"></i>
                 <span>mydailytoolss@gmail.com</span>
             </div>
+            
             <button class="mobile-menu-btn">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </header>
     
-    <!-- Hero Section — text left, PNG cutout right -->
+    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
-            <div class="hero-inner">
-
-                <!-- LEFT: all original hero text/buttons -->
-                <div class="hero-content">
-                    <div class="hero-badge">⚡ All Tools Free</div>
-                    <h1>Your Daily Tools, All in One Place</h1>
-                    <p>Convert, calculate, compress, and simplify your everyday tasks — fast and free.</p>
-                    <a href="#tools" class="cta-button">Explore Tools &nbsp;→</a>
-                    <div class="tool-icons">
-                        <div class="tool-icon"><i class="fas fa-image"></i></div>
-                        <div class="tool-icon"><i class="fas fa-file-alt"></i></div>
-                        <div class="tool-icon"><i class="fas fa-calculator"></i></div>
-                        <div class="tool-icon"><i class="fas fa-font"></i></div>
-                        <div class="tool-icon"><i class="fas fa-code"></i></div>
-                        <div class="tool-icon"><i class="fas fa-video"></i></div>
-                    </div>
-                </div>
-
-                <!-- RIGHT: PNG cutout image -->
-                <div class="hero-image-wrap">
-                    <img
-                        src="https://techwithhussain.online/wp-content/uploads/2026/03/poster-1-10.png"
-                        alt="Tech with Hussain"
-                    >
-                </div>
-
+             <img src="https://techwithhussain.online/wp-content/uploads/2026/03/poster-1__10_-removebg-preview.png" class="hero-side-img" alt="hero image">
+            <div class="hero-badge">⚡ All Tools Free</div>
+            <h1>Your Daily Tools, All in One Place</h1>
+            <p>Convert, calculate, compress, and simplify your everyday tasks — fast and free.</p>
+            <a href="#tools" class="cta-button">Explore Tools &nbsp;→</a>
+            
+            <div class="tool-icons">
+                <div class="tool-icon"><i class="fas fa-image"></i></div>
+                <div class="tool-icon"><i class="fas fa-file-alt"></i></div>
+                <div class="tool-icon"><i class="fas fa-calculator"></i></div>
+                <div class="tool-icon"><i class="fas fa-font"></i></div>
+                <div class="tool-icon"><i class="fas fa-code"></i></div>
+                <div class="tool-icon"><i class="fas fa-video"></i></div>
             </div>
         </div>
     </section>
@@ -908,39 +980,67 @@
         </div>
     </section>
 
-    <!-- Featured Tools Row -->
-    <section class="tools-section">
-        <div class="container">
-            <div class="featured-tools">
-                <div class="tool-card">
-                    <div class="tool-icon-container">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
-                    </div>
-                    <h3>CapCut without vpn</h3>
-                    <p>Download CapCut without vpn <br> No Watermark • Without VPN</p>
-                    <a href="capcut-without-vpn.html" class="tool-button">Download Now</a>
-                </div>
-                <div class="tool-card">
-                    <div class="tool-icon-container">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-                    </div>
-                    <h3>Cricfy</h3>
-                    <p>Watch All Sports Matches Live <br> Fast • Free • Real Time</p>
-                    <a href="cricfy.html" class="tool-button">Download Now</a>
-                </div>
-                <div class="tool-card">
-                    <div class="tool-icon-container">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg>
-                    </div>
-                    <h3>Hd Streamz</h3>
-                    <p>Watch Live TV Channels <br> Sports • Movies • Entertainment</p>
-                    <a href="hd-streamz.html" class="tool-button">Download Now</a>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- Featured Tools Row -->
+<section class="tools-section">
+  <div class="container">
 
-    <div class="section-divider"></div>
+    <div class="featured-tools">
+
+      <!-- CapCut -->
+      <div class="tool-card">
+        <div class="tool-icon-container">
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="23 7 16 12 23 17 23 7"/>
+            <rect x="1" y="5" width="15" height="14" rx="2"/>
+          </svg>
+        </div>
+        <h3>CapCut without vpn</h3>
+        <p>
+          Download CapCut without vpn <br>
+          No Watermark • Without VPN
+        </p>
+        <a href="capcut-without-vpn.html" class="tool-button">Download Now</a>
+      </div>
+
+      <!-- Cricfy -->
+      <div class="tool-card">
+        <div class="tool-icon-container">
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+            <path d="M2 12h20"/>
+          </svg>
+        </div>
+        <h3>Cricfy</h3>
+        <p>
+          Watch All Sports Matches Live <br>
+          Fast • Free • Real Time
+        </p>
+        <a href="cricfy.html" class="tool-button">Download Now</a>
+      </div>
+
+      <!-- HD Streamz -->
+      <div class="tool-card">
+        <div class="tool-icon-container">
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect>
+            <polyline points="17 2 12 7 7 2"></polyline>
+          </svg>
+        </div>
+        <h3>Hd Streamz</h3>
+        <p>
+          Watch Live TV Channels <br>
+          Sports • Movies • Entertainment
+        </p>
+        <a href="hd-streamz.html" class="tool-button">Download Now</a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
     
     <!-- Document Tools Section -->
     <section class="tools-section" style="background-color: #f1f5f9;">
@@ -950,12 +1050,42 @@
                 <p>Manage and convert your documents with ease</p>
             </div>
             <div class="tools-grid">
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 13h1l1 4 1-4h1"/><path d="M9 17h6"/></svg></div><h3>PDF to Word</h3><p>Convert between PDF and Word documents seamlessly</p><a href="pdf-to-word-word-to-pdf.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg></div><h3>PDF Compressor</h3><p>Reduce PDF file size while maintaining quality</p><a href="pdf-compressor.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h3"/><path d="M16 6h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"/><line x1="12" y1="2" x2="12" y2="22"/></svg></div><h3>PDF Merger & Splitter</h3><p>Combine multiple PDFs or split pages from a PDF</p><a href="pdf-merger-and-splitter.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/><polyline points="8 18 12 22 16 18"/></svg></div><h3>Document Converter</h3><p>Convert between various document formats</p><a href="document-converter.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1.5" fill="currentColor" stroke="none"/></svg></div><h3>PDF Lock/Unlock</h3><p>Add or remove passwords from PDF files</p><a href="pdf-lock-unlock-tool.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div><h3>eSign PDF</h3><p>Add digital signatures to your PDF documents</p><a href="esign-pdf-tool.html" class="tool-button">Use Tool</a></div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 13h1l1 4 1-4h1"/><path d="M9 17h6"/></svg></div>
+                    <h3>PDF to Word</h3>
+                    <p>Convert between PDF and Word documents seamlessly</p>
+                    <a href="pdf-to-word-word-to-pdf.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg></div>
+                    <h3>PDF Compressor</h3>
+                    <p>Reduce PDF file size while maintaining quality</p>
+                    <a href="pdf-compressor.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h3"/><path d="M16 6h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"/><line x1="12" y1="2" x2="12" y2="22"/></svg></div>
+                    <h3>PDF Merger & Splitter</h3>
+                    <p>Combine multiple PDFs or split pages from a PDF</p>
+                    <a href="pdf-merger-and-splitter.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/><polyline points="8 18 12 22 16 18"/></svg></div>
+                    <h3>Document Converter</h3>
+                    <p>Convert between various document formats</p>
+                    <a href="document-converter.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1.5" fill="currentColor" stroke="none"/></svg></div>
+                    <h3>PDF Lock/Unlock</h3>
+                    <p>Add or remove passwords from PDF files</p>
+                    <a href="pdf-lock-unlock-tool.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+                    <h3>eSign PDF</h3>
+                    <p>Add digital signatures to your PDF documents</p>
+                    <a href="esign-pdf-tool.html" class="tool-button">Use Tool</a>
+                </div>
             </div>
         </div>
     </section>
@@ -970,12 +1100,42 @@
                 <p>Perform various calculations for your daily needs</p>
             </div>
             <div class="tools-grid">
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h2M12 10h2M16 10h0M8 14h2M12 14h2M16 14h2M8 18h2M12 18h4"/></svg></div><h3>Scientific Calculator</h3><p>Advanced calculator with scientific functions</p><a href="scientific-calculator.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg></div><h3>Age Calculator</h3><p>Calculate age from birth date to current date</p><a href="age-calculator.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M16 11l2 2 4-4"/></svg></div><h3>BMI Calculator</h3><p>Calculate your Body Mass Index</p><a href="bmi-calculator.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/><path d="M12 7v2"/></svg></div><h3>Loan EMI Calculator</h3><p>Calculate Equated Monthly Installments for loans</p><a href="loan-emi-calculator.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></div><h3>GST Calculator</h3><p>Calculate Goods and Services Tax amounts</p><a href="gst-calculator.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.5 9a3 3 0 0 1 5 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></div><h3>Currency Converter</h3><p>Convert between world currencies with live rates</p><a href="currency-converter.html" class="tool-button">Use Tool</a></div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h2M12 10h2M16 10h0M8 14h2M12 14h2M16 14h2M8 18h2M12 18h4"/></svg></div>
+                    <h3>Scientific Calculator</h3>
+                    <p>Advanced calculator with scientific functions</p>
+                    <a href="scientific-calculator.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg></div>
+                    <h3>Age Calculator</h3>
+                    <p>Calculate age from birth date to current date</p>
+                    <a href="age-calculator.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M16 11l2 2 4-4"/></svg></div>
+                    <h3>BMI Calculator</h3>
+                    <p>Calculate your Body Mass Index</p>
+                    <a href="bmi-calculator.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/><path d="M12 7v2"/></svg></div>
+                    <h3>Loan EMI Calculator</h3>
+                    <p>Calculate Equated Monthly Installments for loans</p>
+                    <a href="loan-emi-calculator.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></div>
+                    <h3>GST Calculator</h3>
+                    <p>Calculate Goods and Services Tax amounts</p>
+                    <a href="gst-calculator.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.5 9a3 3 0 0 1 5 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></div>
+                    <h3>Currency Converter</h3>
+                    <p>Convert between world currencies with live rates</p>
+                    <a href="currency-converter.html" class="tool-button">Use Tool</a>
+                </div>
             </div>
         </div>
     </section>
@@ -990,12 +1150,42 @@
                 <p>Manipulate and analyze text with our text processing tools</p>
             </div>
             <div class="tools-grid">
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg></div><h3>Text Case Converter</h3><p>Change text between uppercase, lowercase and more</p><a href="text-case-converter.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 10h12M3 14h9M3 18h6"/></svg></div><h3>Word & Character Counter</h3><p>Count words, characters, sentences and paragraphs</p><a href="word-and-character-counter.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 10h18M3 14h18"/><line x1="17" y1="18" x2="21" y2="18"/><line x1="19" y1="16" x2="19" y2="20"/></svg></div><h3>Remove Duplicate Lines</h3><p>Clean up text by removing duplicate lines</p><a href="remove-duplicate-lines.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 10h14M3 14h10M3 18h6"/><polyline points="17 8 21 4 17 0"/><line x1="21" y1="4" x2="21" y2="14"/></svg></div><h3>Text Sorter</h3><p>Sort lines of text alphabetically or numerically</p><a href="text-sorter.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg></div><h3>Text Reverser</h3><p>Reverse text, words, or character order</p><a href="text-reverser.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0 3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></div><h3>Text Encryptor/Decryptor</h3><p>Encrypt and decrypt text with secure algorithms</p><a href="text-encryptor-decryptor.html" class="tool-button">Use Tool</a></div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg></div>
+                    <h3>Text Case Converter</h3>
+                    <p>Change text between uppercase, lowercase and more</p>
+                    <a href="text-case-converter.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 10h12M3 14h9M3 18h6"/></svg></div>
+                    <h3>Word & Character Counter</h3>
+                    <p>Count words, characters, sentences and paragraphs</p>
+                    <a href="word-and-character-counter.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 10h18M3 14h18"/><line x1="17" y1="18" x2="21" y2="18"/><line x1="19" y1="16" x2="19" y2="20"/></svg></div>
+                    <h3>Remove Duplicate Lines</h3>
+                    <p>Clean up text by removing duplicate lines</p>
+                    <a href="remove-duplicate-lines.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 10h14M3 14h10M3 18h6"/><polyline points="17 8 21 4 17 0"/><line x1="21" y1="4" x2="21" y2="14"/></svg></div>
+                    <h3>Text Sorter</h3>
+                    <p>Sort lines of text alphabetically or numerically</p>
+                    <a href="text-sorter.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg></div>
+                    <h3>Text Reverser</h3>
+                    <p>Reverse text, words, or character order</p>
+                    <a href="text-reverser.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0 3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></div>
+                    <h3>Text Encryptor/Decryptor</h3>
+                    <p>Encrypt and decrypt text with secure algorithms</p>
+                    <a href="text-encryptor-decryptor.html" class="tool-button">Use Tool</a>
+                </div>
             </div>
         </div>
     </section>
@@ -1010,12 +1200,42 @@
                 <p>Essential tools for developers and webmasters</p>
             </div>
             <div class="tools-grid">
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="19" y1="12" x2="5" y2="12"/></svg></div><h3>HTML/CSS/JS Minifier</h3><p>Minify your code to reduce file size and improve performance</p><a href="html-css-js-minifier.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5a2 2 0 0 0 2 2h1"/><path d="M16 3h1a2 2 0 0 1 2 2v5a2 2 0 0 0 2 2 2 2 0 0 0-2 2v5a2 2 0 0 1-2 2h-1"/></svg></div><h3>JSON Formatter & Validator</h3><p>Format and validate JSON data for readability and correctness</p><a href="json-formatter-and-validator.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/><path d="m10 15 2 2 4-4"/></svg></div><h3>Base64 Encoder/Decoder</h3><p>Encode and decode Base64 strings and files</p><a href="base64-encoder-decoder.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div><h3>URL Encoder/Decoder</h3><p>Encode or decode URLs to make them web-safe</p><a href="url-encoder-decoder.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg></div><h3>Color Picker & Converter</h3><p>Pick colors and convert between different color formats</p><a href="color-picker-and-converter.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 9 5 12 1.774-5.226L21 14 9 9z"/><path d="m16.071 16.071 4.243 4.243"/><path d="m7.188 2.239.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656-2.12 2.122"/></svg></div><h3>Regex Tester</h3><p>Test and debug regular expressions in real-time</p><a href="#" class="tool-button">Use Tool</a></div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="19" y1="12" x2="5" y2="12"/></svg></div>
+                    <h3>HTML/CSS/JS Minifier</h3>
+                    <p>Minify your code to reduce file size and improve performance</p>
+                    <a href="html-css-js-minifier.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5a2 2 0 0 0 2 2h1"/><path d="M16 3h1a2 2 0 0 1 2 2v5a2 2 0 0 0 2 2 2 2 0 0 0-2 2v5a2 2 0 0 1-2 2h-1"/></svg></div>
+                    <h3>JSON Formatter & Validator</h3>
+                    <p>Format and validate JSON data for readability and correctness</p>
+                    <a href="json-formatter-and-validator.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/><path d="m10 15 2 2 4-4"/></svg></div>
+                    <h3>Base64 Encoder/Decoder</h3>
+                    <p>Encode and decode Base64 strings and files</p>
+                    <a href="base64-encoder-decoder.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+                    <h3>URL Encoder/Decoder</h3>
+                    <p>Encode or decode URLs to make them web-safe</p>
+                    <a href="url-encoder-decoder.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg></div>
+                    <h3>Color Picker & Converter</h3>
+                    <p>Pick colors and convert between different color formats</p>
+                    <a href="color-picker-and-converter.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 9 5 12 1.774-5.226L21 14 9 9z"/><path d="m16.071 16.071 4.243 4.243"/><path d="m7.188 2.239.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656-2.12 2.122"/></svg></div>
+                    <h3>Regex Tester</h3>
+                    <p>Test and debug regular expressions in real-time</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
             </div>
         </div>
     </section>
@@ -1030,12 +1250,42 @@
                 <p>Create, convert and analyze colors for your designs</p>
             </div>
             <div class="tools-grid">
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h4l7 7-4 4-7-7V3z"/><path d="M14 14l3 3a2 2 0 0 0 3-3l-3-3"/><circle cx="9" cy="9" r="1" fill="currentColor" stroke="none"/></svg></div><h3>Color Picker from Image</h3><p>Extract color palettes from any uploaded image</p><a href="#" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="6" height="8" rx="1"/><rect x="9" y="8" width="6" height="8" rx="1"/><rect x="16" y="8" width="6" height="8" rx="1"/><path d="M5 8V5a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/></svg></div><h3>HEX to RGB Converter</h3><p>Convert between HEX and RGB color formats</p><a href="hex-to-rgb-converter.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="10" rx="2"/><line x1="7" y1="7" x2="7" y2="17"/><line x1="12" y1="7" x2="12" y2="17"/><line x1="17" y1="7" x2="17" y2="17"/></svg></div><h3>Gradient Generator</h3><p>Create beautiful CSS gradients with custom controls</p><a href="gradient-generator.htm" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20V2z" fill="currentColor" stroke="none" opacity="0.4"/></svg></div><h3>Contrast Checker</h3><p>Check color contrast ratios for accessibility standards</p><a href="contrast-checker.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="4" height="16" rx="1"/><rect x="8" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/><rect x="20" y="4" width="2" height="16" rx="1"/></svg></div><h3>Palette Generator</h3><p>Generate harmonious color palettes for your projects</p><a href="palette-generator.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/><line x1="2" y1="2" x2="22" y2="22"/></svg></div><h3>Color Blindness Simulator</h3><p>Simulate how colors appear to people with color vision deficiencies</p><a href="color-blindness-simulator.html" class="tool-button">Use Tool</a></div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h4l7 7-4 4-7-7V3z"/><path d="M14 14l3 3a2 2 0 0 0 3-3l-3-3"/><circle cx="9" cy="9" r="1" fill="currentColor" stroke="none"/></svg></div>
+                    <h3>Color Picker from Image</h3>
+                    <p>Extract color palettes from any uploaded image</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="6" height="8" rx="1"/><rect x="9" y="8" width="6" height="8" rx="1"/><rect x="16" y="8" width="6" height="8" rx="1"/><path d="M5 8V5a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/></svg></div>
+                    <h3>HEX to RGB Converter</h3>
+                    <p>Convert between HEX and RGB color formats</p>
+                    <a href="hex-to-rgb-converter.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><defs><linearGradient id="gg" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:currentColor;stop-opacity:1"/><stop offset="100%" style="stop-color:currentColor;stop-opacity:0.2"/></linearGradient></defs><rect x="3" y="7" width="18" height="10" rx="2" stroke="url(#gg)"/><line x1="7" y1="7" x2="7" y2="17"/><line x1="12" y1="7" x2="12" y2="17"/><line x1="17" y1="7" x2="17" y2="17"/></svg></div>
+                    <h3>Gradient Generator</h3>
+                    <p>Create beautiful CSS gradients with custom controls</p>
+                    <a href="gradient-generator.htm" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20V2z" fill="currentColor" stroke="none" opacity="0.4"/></svg></div>
+                    <h3>Contrast Checker</h3>
+                    <p>Check color contrast ratios for accessibility standards</p>
+                    <a href="contrast-checker.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="4" height="16" rx="1"/><rect x="8" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/><rect x="20" y="4" width="2" height="16" rx="1"/></svg></div>
+                    <h3>Palette Generator</h3>
+                    <p>Generate harmonious color palettes for your projects</p>
+                    <a href="palette-generator.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/><line x1="2" y1="2" x2="22" y2="22"/></svg></div>
+                    <h3>Color Blindness Simulator</h3>
+                    <p>Simulate how colors appear to people with color vision deficiencies</p>
+                    <a href="color-blindness-simulator.html" class="tool-button">Use Tool</a>
+                </div>
             </div>
         </div>
     </section>
@@ -1050,9 +1300,24 @@
                 <p>Optimize your content and analyze your website performance</p>
             </div>
             <div class="tools-grid">
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/><line x1="11" y1="8" x2="11" y2="14"/></svg></div><h3>Keyword Density Checker</h3><p>Analyze keyword frequency and density in your content</p><a href="keyword-density-checker.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div><h3>Meta Tag Analyzer</h3><p>Check and analyze meta tags for SEO optimization</p><a href="meta-tag-analyzer.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div><h3>Word Counter</h3><p>Count words, characters and reading time for SEO content</p><a href="word-counter.html" class="tool-button">Use Tool</a></div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/><line x1="11" y1="8" x2="11" y2="14"/></svg></div>
+                    <h3>Keyword Density Checker</h3>
+                    <p>Analyze keyword frequency and density in your content</p>
+                    <a href="keyword-density-checker.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
+                    <h3>Meta Tag Analyzer</h3>
+                    <p>Check and analyze meta tags for SEO optimization</p>
+                    <a href="meta-tag-analyzer.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+                    <h3>Word Counter</h3>
+                    <p>Count words, characters and reading time for SEO content</p>
+                    <a href="word-counter.html" class="tool-button">Use Tool</a>
+                </div>
             </div>
         </div>
     </section>
@@ -1067,12 +1332,42 @@
                 <p>Handy tools for various everyday needs</p>
             </div>
             <div class="tools-grid">
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="5" y="5" width="3" height="3" fill="currentColor" stroke="none"/><rect x="16" y="5" width="3" height="3" fill="currentColor" stroke="none"/><rect x="5" y="16" width="3" height="3" fill="currentColor" stroke="none"/><path d="M14 14h3v3"/><path d="M17 21v-4"/><path d="M21 14v3h-4"/></svg></div><h3>QR Code Generator & Scanner</h3><p>Create and scan QR codes for URLs, text, and more</p><a href="qr-code-generator-and-scanner.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5v14M7 5v14M11 5v14M15 5v8M19 5v8M15 17v2M19 17v2"/><rect x="1" y="3" width="22" height="18" rx="2"/></svg></div><h3>Barcode Generator</h3><p>Generate barcodes in various formats for products</p><a href="barcode-generator.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>UUID Generator</h3><p>Generate universally unique identifiers (UUIDs)</p><a href="uuid-generator.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M12 2v20"/><path d="M4.93 4.93 19.07 19.07M19.07 4.93 4.93 19.07" stroke-opacity="0.3"/><circle cx="12" cy="12" r="3"/></svg></div><h3>Unit Converter</h3><p>Convert between various units of measurement</p><a href="unit-converter.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/><path d="M4.22 4.22A10 10 0 0 0 2 12" stroke-opacity="0.4"/></svg></div><h3>Time Zone Converter</h3><p>Convert times between different time zones</p><a href="time-tone-converter.html" class="tool-button">Use Tool</a></div>
-                <div class="tool-card"><div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg></div><h3>Random Number/Password Generator</h3><p>Generate secure random numbers and passwords</p><a href="random-number-password-generator.html" class="tool-button">Use Tool</a></div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="5" y="5" width="3" height="3" fill="currentColor" stroke="none"/><rect x="16" y="5" width="3" height="3" fill="currentColor" stroke="none"/><rect x="5" y="16" width="3" height="3" fill="currentColor" stroke="none"/><path d="M14 14h3v3"/><path d="M17 21v-4"/><path d="M21 14v3h-4"/></svg></div>
+                    <h3>QR Code Generator & Scanner</h3>
+                    <p>Create and scan QR codes for URLs, text, and more</p>
+                    <a href="qr-code-generator-and-scanner.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5v14M7 5v14M11 5v14M15 5v8M19 5v8M15 17v2M19 17v2"/><rect x="1" y="3" width="22" height="18" rx="2"/></svg></div>
+                    <h3>Barcode Generator</h3>
+                    <p>Generate barcodes in various formats for products</p>
+                    <a href="barcode-generator.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+                    <h3>UUID Generator</h3>
+                    <p>Generate universally unique identifiers (UUIDs)</p>
+                    <a href="uuid-generator.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M12 2v20"/><path d="M4.93 4.93 19.07 19.07M19.07 4.93 4.93 19.07" stroke-opacity="0.3"/><circle cx="12" cy="12" r="3"/></svg></div>
+                    <h3>Unit Converter</h3>
+                    <p>Convert between various units of measurement</p>
+                    <a href="unit-converter.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/><path d="M4.22 4.22A10 10 0 0 0 2 12" stroke-opacity="0.4"/></svg></div>
+                    <h3>Time Zone Converter</h3>
+                    <p>Convert times between different time zones</p>
+                    <a href="time-tone-converter.html" class="tool-button">Use Tool</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon-container"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg></div>
+                    <h3>Random Number/Password Generator</h3>
+                    <p>Generate secure random numbers and passwords</p>
+                    <a href="random-number-password-generator.html" class="tool-button">Use Tool</a>
+                </div>
             </div>
         </div>
     </section>
@@ -1100,12 +1395,18 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2025 My Daily Tools. All rights reserved. | Made by <a href="https://www.instagram.com/tech.withhussain" target="_blank" rel="noopener">tech.withhussain</a></p>
+                <p>
+                    © 2025 My Daily Tools. All rights reserved. |
+                    Made by <a href="https://www.instagram.com/tech.withhussain" target="_blank" rel="noopener">
+                        tech.withhussain
+                    </a>
+                </p>
             </div>
         </div>
     </footer>
     
     <script>
+        /* ========= FLOATING PARTICLES ========= */
         const particlesContainer = document.getElementById('particles');
         for (let i = 0; i < 40; i++) {
             const p = document.createElement('div');
@@ -1118,6 +1419,7 @@
             particlesContainer.appendChild(p);
         }
 
+        /* ========= 3D CARD TILT ========= */
         document.querySelectorAll('.tool-card').forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
@@ -1129,9 +1431,12 @@
                 const rotY = ((x - cx) / cx) * 8;
                 card.style.transform = `translateY(-10px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
             });
-            card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+            });
         });
 
+        /* ========= MOBILE MENU ========= */
         const mobileBtn = document.querySelector('.mobile-menu-btn');
         const nav = document.querySelector('nav');
         if (mobileBtn && nav) {
@@ -1140,6 +1445,7 @@
             });
         }
 
+        /* ========= SEARCH BAR ========= */
         const searchInput = document.getElementById("searchInput");
         const searchButton = document.getElementById("searchButton");
         const resultsBox = document.getElementById("searchResults");
@@ -1166,16 +1472,23 @@
                     resultsList.appendChild(li);
                 }
             });
-            if (!found) resultsList.innerHTML = "<li>No tools found</li>";
+            if (!found) {
+                resultsList.innerHTML = "<li>No tools found</li>";
+            }
             resultsBox.style.display = "block";
         }
 
         searchButton.addEventListener("click", performSearch);
-        searchInput.addEventListener("keyup", e => { if (e.key === "Enter") performSearch(); });
+        searchInput.addEventListener("keyup", e => {
+            if (e.key === "Enter") performSearch();
+        });
 
+        /* ========= SCROLL REVEAL ========= */
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.style.animationPlayState = 'running';
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
             });
         }, { threshold: 0.1 });
 
@@ -1185,7 +1498,11 @@
         });
     </script>
 
-    <script async="async" data-cfasync="false" src="https://pl28306816.effectivegatecpm.com/27f0023227af0d8509bd4b7d53bb0b65/invoke.js"></script>
+    <script
+        async="async"
+        data-cfasync="false"
+        src="https://pl28306816.effectivegatecpm.com/27f0023227af0d8509bd4b7d53bb0b65/invoke.js"
+    ></script>
     <div id="container-27f0023227af0d8509bd4b7d53bb0b65"></div>
 </body>
 </html>
