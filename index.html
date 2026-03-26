@@ -49,7 +49,6 @@
             overflow-x: hidden;
         }
 
-        /* ===== ANIMATED BACKGROUND ===== */
         body::before {
             content: '';
             position: fixed;
@@ -69,7 +68,6 @@
             100% { opacity: 1; }
         }
 
-        /* Floating particles */
         .particles {
             position: fixed;
             top: 0; left: 0;
@@ -188,6 +186,26 @@
             color: var(--neon);
             cursor: pointer;
         }
+
+        /* ===== HEADER IMAGE ===== */
+        .header-img {
+            height: 42px;
+            width: auto;
+            border-radius: 8px;
+            object-fit: contain;
+            transition: var(--transition);
+            filter: drop-shadow(0 0 8px rgba(0,212,255,0.3));
+        }
+        .header-img:hover {
+            filter: drop-shadow(0 0 16px rgba(0,212,255,0.7));
+            transform: scale(1.05);
+        }
+        @media (max-width: 768px) {
+            .header-img { height: 36px; }
+        }
+        @media (max-width: 576px) {
+            .header-img { height: 32px; }
+        }
         
         /* ===== HERO ===== */
         .hero {
@@ -221,7 +239,6 @@
             to   { transform: rotate(360deg); }
         }
 
-        /* 3D grid floor effect */
         .hero::after {
             content: '';
             position: absolute;
@@ -446,7 +463,6 @@
             background: rgba(10,18,32,0.98);
         }
 
-        /* Override inline styles */
         .tools-section[style*="background-color: #f1f5f9"] {
             background: rgba(10,18,32,0.98) !important;
         }
@@ -786,7 +802,6 @@
             }
         }
 
-        /* Stagger cards */
         .tools-grid .tool-card:nth-child(1) { animation-delay: 0.05s; }
         .tools-grid .tool-card:nth-child(2) { animation-delay: 0.1s; }
         .tools-grid .tool-card:nth-child(3) { animation-delay: 0.15s; }
@@ -833,38 +848,6 @@
             .tools-grid { grid-template-columns: 1fr; }
             .footer-container { grid-template-columns: 1fr; }
         }
-         /* HERO RIGHT SIDE IMAGE */
-.hero {
-    position: relative;
-}
-
-.hero-side-img{
-    position: absolute;
-    right: 50px;
-    top: 80px;
-    width: 320px;
-    max-width: 40%;
-    border-radius: 20px;
-    box-shadow: 0 0 40px rgba(0,212,255,0.3);
-    animation: floatHero 4s ease-in-out infinite;
-    z-index: 2;
-}
-
-/* FLOAT ANIMATION */
-@keyframes floatHero{
-    0%,100%{ transform: translateY(0); }
-    50%{ transform: translateY(-15px); }
-}
-
-/* MOBILE RESPONSIVE */
-@media (max-width:768px){
-    .hero-side-img{
-        position: static;
-        display:block;
-        margin: 30px auto 0;
-        max-width: 80%;
-    }
-}
     </style>
 </head>
 <body>
@@ -889,6 +872,13 @@
                 <i class="fas fa-envelope"></i>
                 <span>mydailytoolss@gmail.com</span>
             </div>
+
+            <!-- ✅ Header Image - Right Side -->
+            <img
+                src="https://techwithhussain.online/wp-content/uploads/2026/03/poster-1-10.png"
+                alt="Tech with Hussain"
+                class="header-img"
+            >
             
             <button class="mobile-menu-btn">
                 <i class="fas fa-bars"></i>
@@ -899,7 +889,6 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
-             <img src="https://techwithhussain.online/wp-content/uploads/2026/03/poster-1-10.png" class="hero-side-img" alt="hero image">
             <div class="hero-badge">⚡ All Tools Free</div>
             <h1>Your Daily Tools, All in One Place</h1>
             <p>Convert, calculate, compress, and simplify your everyday tasks — fast and free.</p>
