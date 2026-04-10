@@ -53,7 +53,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <style>
     /* ===== CSS VARIABLES ===== */
@@ -78,8 +78,8 @@
       --radius: 16px;
       --radius-sm: 8px;
       --radius-lg: 24px;
-      --font-display: 'Syne', sans-serif;
-      --font-body: 'DM Sans', sans-serif;
+      --font-display: 'Poppins', sans-serif;
+      --font-body: 'Inter', sans-serif;
       --transition: all 0.22s cubic-bezier(0.4,0,0.2,1);
     }
     [data-theme="dark"] {
@@ -139,6 +139,7 @@
     .logo-icon svg { width:18px; height:18px; fill:white; }
     nav { display: flex; align-items: center; gap: 8px; }
     .nav-link {
+      font-family: var(--font-body);
       font-size: 0.85rem;
       font-weight: 500;
       color: var(--text-secondary);
@@ -193,8 +194,9 @@
     h1 {
       font-family: var(--font-display);
       font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 800;
+      font-weight: 700;
       line-height: 1.15;
+      letter-spacing: -0.5px;
       color: var(--text-primary);
       margin-bottom: 16px;
     }
@@ -205,11 +207,13 @@
       background-clip: text;
     }
     .hero-sub {
+      font-family: var(--font-body);
       font-size: 1.05rem;
-      color: var(--text-secondary);
+      color: #6b7280;
       max-width: 520px;
       margin: 0 auto 32px;
-      font-weight: 300;
+      font-weight: 400;
+      line-height: 1.7;
     }
     .format-pills { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
     .pill {
@@ -271,6 +275,7 @@
       font-family: var(--font-display);
       font-size: 1.3rem;
       font-weight: 700;
+      letter-spacing: -0.3px;
       color: var(--text-primary);
       margin-bottom: 6px;
     }
@@ -279,9 +284,9 @@
       display: inline-flex; align-items: center; gap: 9px;
       background: linear-gradient(135deg, var(--accent), #1d4ed8);
       color: white;
-      font-family: var(--font-display);
+      font-family: var(--font-body);
       font-size: 1rem;
-      font-weight: 700;
+      font-weight: 500;
       padding: 14px 32px;
       border-radius: 12px;
       border: none;
@@ -492,8 +497,8 @@
       display: inline-flex; align-items: center; justify-content: center; gap: 10px;
       background: linear-gradient(135deg, var(--accent), #1d4ed8);
       color: white;
-      font-family: var(--font-display);
-      font-size: 1rem; font-weight: 700;
+      font-family: var(--font-body);
+      font-size: 1rem; font-weight: 500;
       padding: 16px 32px;
       border-radius: 12px; border: none;
       cursor: pointer; transition: var(--transition);
@@ -626,7 +631,7 @@
       display: inline-flex; align-items: center; gap: 10px;
       background: linear-gradient(135deg, var(--success), #059669);
       color: white;
-      font-family: var(--font-display); font-size: 1rem; font-weight: 700;
+      font-family: var(--font-body); font-size: 1rem; font-weight: 500;
       padding: 15px 36px; border-radius: 12px; border: none;
       cursor: pointer; transition: var(--transition);
       box-shadow: 0 4px 20px rgba(16,185,129,0.3);
@@ -639,10 +644,11 @@
       font-family: var(--font-display);
       font-size: clamp(1.5rem, 3vw, 2rem);
       font-weight: 700;
+      letter-spacing: -0.5px;
       color: var(--text-primary);
       margin-bottom: 8px;
     }
-    .section-sub { font-size: 1rem; color: var(--text-secondary); margin-bottom: 40px; }
+    .section-sub { font-family: var(--font-body); font-size: 1rem; font-weight: 400; color: #6b7280; margin-bottom: 40px; }
     .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 16px; }
     .feature-card {
       background: var(--bg-card);
@@ -1121,7 +1127,7 @@
     <div class="footer-col">
       <h4>Image Tools</h4>
       <a href="/image-converter">Image Converter</a>
-      <a href="https://www.mydailytools.store/image-compressor.html">Image Compressor</a>
+      <a href="/image-compressor">Image Compressor</a>
       <a href="/image-resizer">Image Resizer</a>
       <a href="/image-crop">Image Cropper</a>
     </div>
