@@ -847,7 +847,7 @@
   </div>
 </header>
 
-<nav class="nav-mobile" id="mobile-nav" aria-label="Mobile navigation" hidden>
+<nav class="nav-mobile" id="mobile-nav" aria-label="Mobile navigation">
   <ul>
     <li><a href="/">Home</a></li>
     <li><a href="/#tools">All Tools</a></li>
@@ -967,6 +967,9 @@
               <button class="format-chip" data-fmt="image/png">PNG</button>
               <button class="format-chip" data-fmt="image/webp">WebP</button>
             </div>
+            <p id="png-quality-notice" style="display:none;margin-top:8px;font-size:.75rem;color:var(--c-accent);">
+              <i class="fas fa-info-circle"></i> PNG is lossless — quality slider has no effect. Output will auto-convert to JPG.
+            </p>
           </div>
         </div>
 
@@ -1334,7 +1337,7 @@
         <p>Simplifying your digital life with powerful, easy-to-use free tools for everyday tasks. No signup, no limits.</p>
         <div class="footer-email">
           <i class="fas fa-envelope" aria-hidden="true"></i>
-          <a href="mailto:contact@mydailytools.store">contact@mydailytools.store</a>
+          <a href="/cdn-cgi/l/email-protection#7e1d11100a1f1d0a3e13071a1f1712070a1111120d500d0a110c1b"><span class="__cf_email__" data-cfemail="71121e1f05101205311c081510181d08051e1e1d025f02051e0314">[email&#160;protected]</span></a>
         </div>
       </div>
       <div class="footer-col">
@@ -1423,13 +1426,11 @@
     var open = hamburger.getAttribute('aria-expanded') === 'true';
     hamburger.setAttribute('aria-expanded', String(!open));
     mobileNav.classList.toggle('open', !open);
-    mobileNav.hidden = open;
   });
   mobileNav.querySelectorAll('a').forEach(function (a) {
     a.addEventListener('click', function () {
       hamburger.setAttribute('aria-expanded', 'false');
       mobileNav.classList.remove('open');
-      mobileNav.hidden = true;
     });
   });
 
@@ -1469,6 +1470,11 @@
       chip.addEventListener('click', function () {
         row.querySelectorAll('.format-chip').forEach(function (c) { c.classList.remove('active'); });
         chip.classList.add('active');
+        // Show notice when PNG selected in quality mode (PNG ignores quality)
+        if (row.id === 'q-format-row') {
+          var notice = document.getElementById('png-quality-notice');
+          if (notice) notice.style.display = (chip.dataset.fmt === 'image/png') ? 'block' : 'none';
+        }
       });
     });
   });
@@ -1618,9 +1624,12 @@
    */
   function compressQuality(file, quality, targetW, targetH, outFmt) {
     return loadImage(file).then(function (img) {
-      var canvas  = drawToCanvas(img, targetW, targetH);
-      var mime    = outFmt === 'original' ? (file.type || 'image/jpeg') : outFmt;
-      var q       = quality / 100;
+      var canvas = drawToCanvas(img, targetW, targetH);
+      var mime   = outFmt === 'original' ? (file.type || 'image/jpeg') : outFmt;
+      // PNG ignores quality in canvas.toBlob() — fall back to JPEG so slider works
+      if (mime === 'image/png') { mime = 'image/jpeg'; }
+      var q = quality / 100;
+      console.log('Compressing:', file.name, '| mime:', mime, '| quality:', q);
       return canvasToBlob(canvas, mime, q).then(function (blob) {
         return blobToDataUrl(blob).then(function (dataUrl) {
           return { blob: blob, dataUrl: dataUrl, mime: mime };
@@ -1637,6 +1646,8 @@
     return loadImage(file).then(function (img) {
       var canvas = drawToCanvas(img, targetW, targetH);
       var mime   = outFmt || 'image/jpeg';
+      // PNG ignores quality — binary search is pointless, fall back to JPEG
+      if (mime === 'image/png') { mime = 'image/jpeg'; }
       // Binary search: lo..hi in quality (0.01 … 0.99)
       var lo = 0.01, hi = 0.99, best = null, bestBlob = null;
       var MAX_ITERS = 14;
@@ -1947,6 +1958,8 @@
     document.body.appendChild(toast);
     setTimeout(function () { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 3500);
   }
+
+  console.log('✅ Image Compressor JS loaded.');
 
 })();
 </script>
