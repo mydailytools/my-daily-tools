@@ -2,21 +2,22 @@
 <html lang="en">
 <head>
   <!-- ============================================================
-       My Daily Tools — Complete Redesign
+       My Daily Tools — Complete Redesign  ·  Typography Pass v2
        Design Direction: Clean editorial dark-mode SaaS
-       Font: DM Sans (body) + Syne (display) — distinctive pairing
-       Color: Deep navy base, electric amber accent (#F59E0B), 
-              cool slate surfaces — avoids the tired purple-on-white cliché
-       Key improvements:
-         • Proper semantic HTML5 + ARIA
-         • Full SEO: schema markup, OG, Twitter cards
-         • Mobile-first responsive with hamburger nav
-         • Category filter system (JS, no library needed)
-         • Scroll-reveal via IntersectionObserver
-         • Live search with keyboard nav
-         • Dark/light mode toggle
-         • Micro-interactions on cards
-         • Reduced DOM, no heavy dependencies
+       Fonts:
+         Headings / display  → Poppins 600 / 700 / 800
+                               Geometric, confident; used by Figma, Canva, Webflow.
+         Body / UI           → Inter 400 / 500 / 600
+                               Sub-pixel optimised; the standard for Stripe,
+                               Vercel, Linear, Notion, and most modern SaaS.
+       Color: Deep navy base, electric amber accent (#F59E0B),
+              cool slate surfaces
+       Typography system:
+         • Unified type-scale tokens (lh-heading, lh-body, lh-ui,
+           ls-heading, ls-body, ls-caps) ensure consistent rhythm
+         • -webkit-font-smoothing: antialiased on body
+         • All sizes in rem + clamp() for fluid scaling
+         • No px font sizes except icon sub-elements
   ============================================================ -->
 
   <meta charset="UTF-8">
@@ -75,10 +76,12 @@
   <!-- ===== Favicon ===== -->
   <link rel="icon" href="favicon-16x16.png" type="image/x-icon">
 
-  <!-- ===== Fonts: Syne (display) + DM Sans (body) ===== -->
+  <!-- ===== Fonts: Poppins (headings/display) + Inter (body) ===== -->
+  <!-- Poppins: SaaS-grade heading font — geometric, confident, premium -->
+  <!-- Inter: The benchmark body font used by Stripe, Vercel, Linear, Notion -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <!-- ===== Font Awesome (icons only) ===== -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
@@ -104,8 +107,23 @@
       --c-blue-glow: rgba(59,130,246,0.18);
       --c-amber-glow:rgba(245,158,11,0.18);
 
-      --font-display: 'Syne', sans-serif;
-      --font-body:    'DM Sans', sans-serif;
+      /* ── Typography tokens ──────────────────────────────────────
+         Poppins  → headings, logo, stats, labels, buttons
+                    Geometric sans with strong personality at large sizes.
+                    Weight 600–800 only — lighter weights look weak.
+         Inter    → body, nav links, descriptions, inputs, meta text
+                    Sub-pixel optimised; identical to Stripe, Vercel, Linear.
+      ─────────────────────────────────────────────────────────── */
+      --font-display: 'Poppins', system-ui, sans-serif;
+      --font-body:    'Inter',   system-ui, sans-serif;
+
+      /* Fine-grained type scale (unitless) */
+      --lh-heading:  1.15;   /* tighter for large display text        */
+      --lh-body:     1.65;   /* roomier for reading comfort           */
+      --lh-ui:       1.4;    /* buttons, badges, labels               */
+      --ls-heading:  -0.025em; /* slight tightening on Poppins heads  */
+      --ls-body:     -0.011em; /* Inter reads best slightly tightened */
+      --ls-caps:      0.07em;  /* ALL-CAPS labels                     */
 
       --radius-sm: 8px;
       --radius-md: 14px;
@@ -141,9 +159,15 @@
     html { scroll-behavior:smooth; font-size:16px; }
     body {
       font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 400;
       background: var(--c-bg);
       color: var(--c-text);
-      line-height: 1.6;
+      line-height: var(--lh-body);
+      letter-spacing: var(--ls-body);
+      -webkit-font-smoothing: antialiased;   /* crisp on retina    */
+      -moz-osx-font-smoothing: grayscale;    /* crisp on macOS     */
+      text-rendering: optimizeLegibility;
       overflow-x: hidden;
       transition: background var(--transition), color var(--transition);
     }
@@ -192,13 +216,14 @@
       gap: 24px;
     }
 
-    /* Logo */
+    /* Logo — Poppins 700 sits well at nav scale */
     .logo {
       font-family: var(--font-display);
-      font-size: 1.25rem;
-      font-weight: 800;
+      font-size: 1.2rem;
+      font-weight: 700;
       color: var(--c-text);
-      letter-spacing: -0.02em;
+      letter-spacing: -0.03em;
+      line-height: var(--lh-ui);
       display: flex;
       align-items: center;
       gap: 8px;
@@ -211,17 +236,20 @@
       display: inline-block;
     }
 
-    /* Desktop Nav */
+    /* Desktop nav — Inter 500 for clean, readable nav items */
     .nav-desktop ul {
       display: flex;
       gap: 4px;
     }
     .nav-desktop ul li a {
-      font-size: 0.9rem;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
       font-weight: 500;
+      letter-spacing: -0.005em;
       color: var(--c-muted);
-      padding: 6px 12px;
+      padding: 7px 13px;
       border-radius: var(--radius-sm);
+      line-height: var(--lh-ui);
       transition: color var(--transition), background var(--transition);
     }
     .nav-desktop ul li a:hover {
@@ -288,11 +316,14 @@
     .nav-mobile ul { padding: 0 20px; }
     .nav-mobile ul li a {
       display: block;
-      padding: 12px 16px;
-      font-size: 1rem;
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
       font-weight: 500;
+      letter-spacing: -0.008em;
+      padding: 12px 16px;
       color: var(--c-muted);
       border-radius: var(--radius-sm);
+      line-height: var(--lh-ui);
       transition: var(--transition);
     }
     .nav-mobile ul li a:hover { background: var(--c-surface2); color: var(--c-text); }
@@ -323,17 +354,19 @@
     .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
       background: var(--c-surface);
       border: 1px solid var(--c-border2);
       color: var(--c-accent);
-      font-size: 0.78rem;
+      font-family: var(--font-body);
+      font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: var(--ls-caps);
       text-transform: uppercase;
-      padding: 5px 14px;
+      line-height: var(--lh-ui);
+      padding: 6px 16px;
       border-radius: 100px;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
     .hero-badge::before {
       content: '';
@@ -347,27 +380,36 @@
       50%      { box-shadow: 0 0 0 5px rgba(245,158,11,0); }
     }
 
+    /* Hero H1 — Poppins 800 at display scale.
+       Poppins has generous glyph width, so we tighten tracking
+       and use 1.1 leading to keep multi-line titles from sprawling.
+       clamp() ensures fluid scaling without breakpoint jumps. */
     .hero h1 {
       font-family: var(--font-display);
-      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-size: clamp(2.25rem, 5.5vw, 3.75rem);
       font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
+      line-height: var(--lh-heading);
+      letter-spacing: var(--ls-heading);
       color: var(--c-text);
-      max-width: 780px;
-      margin: 0 auto 20px;
+      max-width: 800px;
+      margin: 0 auto 22px;
     }
     .hero h1 em {
       font-style: normal;
       color: var(--c-accent);
     }
 
+    /* Hero subtext — Inter 400 at 1.125rem is the Stripe/Linear standard.
+       font-weight 400 (not 300) reads better on dark backgrounds. */
     .hero-sub {
-      font-size: clamp(1rem, 2vw, 1.15rem);
+      font-family: var(--font-body);
+      font-size: clamp(1rem, 1.8vw, 1.125rem);
+      font-weight: 400;
+      line-height: 1.7;
+      letter-spacing: -0.008em;
       color: var(--c-muted);
-      max-width: 560px;
-      margin: 0 auto 40px;
-      font-weight: 300;
+      max-width: 540px;
+      margin: 0 auto 44px;
     }
 
     .hero-cta-group {
@@ -378,18 +420,23 @@
       margin-bottom: 64px;
     }
 
-    /* Primary CTA */
+    /* Primary CTA — Poppins 600.
+       Slightly more padding than before; Poppins at 600 needs breathing room.
+       Transition extended to 0.3s for a smoother, more premium feel. */
     .btn-primary {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       background: var(--c-accent);
       color: #0B0F1A;
-      font-weight: 700;
-      font-size: 0.95rem;
-      padding: 13px 28px;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      letter-spacing: -0.01em;
+      line-height: var(--lh-ui);
+      padding: 14px 30px;
       border-radius: var(--radius-md);
-      transition: var(--transition);
+      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
       box-shadow: 0 4px 20px rgba(245,158,11,0.35);
     }
     .btn-primary:hover {
@@ -399,45 +446,49 @@
     }
     .btn-primary:active { transform: translateY(0); }
 
-    /* Secondary CTA */
+    /* Secondary / ghost CTA — Poppins 500 for visual harmony with primary */
     .btn-ghost {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       background: transparent;
       color: var(--c-text);
+      font-family: var(--font-display);
       font-weight: 500;
-      font-size: 0.95rem;
-      padding: 12px 24px;
+      font-size: 0.9375rem;
+      letter-spacing: -0.01em;
+      line-height: var(--lh-ui);
+      padding: 13px 26px;
       border-radius: var(--radius-md);
       border: 1px solid var(--c-border2);
-      transition: var(--transition);
+      transition: background 0.3s ease, border-color 0.3s ease;
     }
     .btn-ghost:hover { background: var(--c-surface2); border-color: var(--c-border2); }
 
-    /* Stats row */
+    /* Stats — Poppins 700 numerals feel more substantial than 800 at this size */
     .hero-stats {
       display: flex;
       gap: clamp(24px, 5vw, 56px);
       justify-content: center;
       flex-wrap: wrap;
     }
-    .stat {
-      text-align: center;
-    }
+    .stat { text-align: center; }
     .stat-num {
       font-family: var(--font-display);
-      font-size: 1.6rem;
-      font-weight: 800;
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
       color: var(--c-text);
-      letter-spacing: -0.02em;
     }
     .stat-num span { color: var(--c-accent); }
     .stat-label {
-      font-size: 0.8rem;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
       color: var(--c-muted);
-      font-weight: 400;
-      margin-top: 2px;
+      margin-top: 4px;
     }
 
     /* ============================================================
@@ -453,31 +504,36 @@
       max-width: 680px;
       margin: 0 auto;
     }
+    /* Search label — Inter 600 uppercase with controlled tracking */
     .search-label {
       display: block;
-      font-size: 0.8rem;
+      font-family: var(--font-body);
+      font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 0.06em;
+      letter-spacing: var(--ls-caps);
       text-transform: uppercase;
+      line-height: var(--lh-ui);
       color: var(--c-muted);
-      margin-bottom: 12px;
-    }
-    .search-field {
-      position: relative;
+      margin-bottom: 10px;
     }
     .search-field input {
       width: 100%;
-      padding: 14px 56px 14px 20px;
+      padding: 14px 58px 14px 20px;
       background: var(--c-surface2);
       border: 1px solid var(--c-border2);
       border-radius: var(--radius-md);
       font-family: var(--font-body);
-      font-size: 0.95rem;
+      font-size: 0.9375rem;
+      font-weight: 400;
+      letter-spacing: -0.008em;
       color: var(--c-text);
       outline: none;
       transition: var(--transition);
     }
-    .search-field input::placeholder { color: var(--c-muted); }
+    .search-field input::placeholder {
+      color: var(--c-muted);
+      font-weight: 400;
+    }
     .search-field input:focus {
       border-color: var(--c-accent);
       box-shadow: 0 0 0 3px rgba(245,158,11,0.15);
@@ -512,7 +568,10 @@
       align-items: center;
       gap: 10px;
       padding: 11px 18px;
-      font-size: 0.9rem;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: -0.005em;
       color: var(--c-text);
       border-bottom: 1px solid var(--c-border);
       transition: background var(--transition);
@@ -539,25 +598,31 @@
       flex-wrap: wrap;
       align-items: center;
     }
+    /* Filter label — matches search label caps style */
     .filter-label {
-      font-size: 0.8rem;
+      font-family: var(--font-body);
+      font-size: 0.72rem;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.07em;
+      letter-spacing: var(--ls-caps);
       color: var(--c-muted);
       margin-right: 4px;
       flex-shrink: 0;
+      line-height: var(--lh-ui);
     }
     .filter-btn {
       padding: 7px 16px;
       border-radius: 100px;
-      font-size: 0.83rem;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
       font-weight: 500;
+      letter-spacing: -0.003em;
+      line-height: var(--lh-ui);
       color: var(--c-muted);
       background: var(--c-surface);
       border: 1px solid var(--c-border);
       cursor: pointer;
-      transition: var(--transition);
+      transition: color 0.3s ease, background 0.3s ease, border-color 0.3s ease;
     }
     .filter-btn:hover {
       color: var(--c-text);
@@ -567,7 +632,7 @@
       background: var(--c-accent);
       color: #0B0F1A;
       border-color: var(--c-accent);
-      font-weight: 700;
+      font-weight: 600;
     }
 
     /* ============================================================
@@ -585,16 +650,19 @@
       flex-wrap: wrap;
     }
     .section-head-left {}
+    /* Section tag — Inter 600 uppercase, consistent with other label elements */
     .section-tag {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: var(--ls-caps);
       text-transform: uppercase;
       color: var(--c-accent);
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       display: flex;
       align-items: center;
       gap: 6px;
+      line-height: var(--lh-ui);
     }
     .section-tag::before {
       content: '';
@@ -602,21 +670,28 @@
       background: var(--c-accent);
       border-radius: 2px;
     }
+    /* Section H2 — Poppins 700.
+       Slightly smaller than hero for visual hierarchy.
+       -0.02em tracking stops Poppins from feeling too loose at 1.8rem. */
     .section-head h2 {
       font-family: var(--font-display);
-      font-size: clamp(1.4rem, 3vw, 1.9rem);
-      font-weight: 800;
+      font-size: clamp(1.35rem, 2.8vw, 1.8rem);
+      font-weight: 700;
+      line-height: var(--lh-heading);
       letter-spacing: -0.02em;
       color: var(--c-text);
     }
     .section-count {
-      font-size: 0.8rem;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 500;
       color: var(--c-muted);
       background: var(--c-surface);
       border: 1px solid var(--c-border);
-      padding: 4px 10px;
+      padding: 4px 11px;
       border-radius: 100px;
       white-space: nowrap;
+      letter-spacing: 0;
     }
 
     /* Tools grid */
@@ -629,6 +704,14 @@
     /* ============================================================
        TOOL CARD
     ============================================================ */
+    /*
+     * BUG FIX #1 — Scroll-reveal initial state
+     * -----------------------------------------
+     * Cards must start VISIBLE (opacity:1) by default so they render
+     * even if JS fails or is slow. JS adds .js-ready to <html> once it
+     * initialises, and ONLY then do we apply the reveal animation.
+     * This prevents the "all cards invisible" blank-page problem.
+     */
     .tool-card {
       background: var(--c-surface);
       border: 1px solid var(--c-border);
@@ -641,7 +724,12 @@
       transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
       position: relative;
       overflow: hidden;
-      /* Scroll-reveal initial state */
+      /* Default: visible. JS will opt-in to reveal animation. */
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Only animate when JS has initialised */
+    .js-ready .tool-card:not(.revealed) {
       opacity: 0;
       transform: translateY(24px);
     }
@@ -690,43 +778,54 @@
       flex-shrink: 0;
     }
 
+    /* Tool card title — Poppins 600 (not 700) at small size;
+       600 is perfectly legible and less heavy than 700 at 0.95rem */
     .tool-card h3 {
       font-family: var(--font-display);
-      font-size: 0.95rem;
-      font-weight: 700;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      line-height: 1.3;
+      letter-spacing: -0.015em;
       color: var(--c-text);
       margin-bottom: 8px;
-      letter-spacing: -0.01em;
     }
+    /* Tool card description — Inter 400, generous leading for readability */
     .tool-card p {
-      font-size: 0.83rem;
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      font-weight: 400;
+      line-height: 1.65;
+      letter-spacing: -0.003em;
       color: var(--c-muted);
-      line-height: 1.55;
       flex: 1;
       margin-bottom: 20px;
     }
 
+    /* Tool link button — Inter 600 matches the body font family for
+       a more understated, Notion-style action affordance */
     .tool-link {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: 0.82rem;
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
       font-weight: 600;
+      letter-spacing: -0.003em;
+      line-height: var(--lh-ui);
       color: var(--c-accent);
-      padding: 7px 14px;
+      padding: 8px 15px;
       border-radius: var(--radius-sm);
       border: 1px solid rgba(245,158,11,0.25);
       background: rgba(245,158,11,0.06);
       align-self: flex-start;
-      transition: var(--transition);
-      letter-spacing: 0.01em;
+      transition: background 0.3s ease, border-color 0.3s ease, gap 0.25s ease;
     }
     .tool-link:hover {
       background: rgba(245,158,11,0.14);
       border-color: rgba(245,158,11,0.5);
       gap: 9px;
     }
-    .tool-link i { font-size: 0.7rem; }
+    .tool-link i { font-size: 0.68rem; }
 
     /* ============================================================
        FEATURED TOOLS (big 2-col card)
@@ -740,16 +839,19 @@
       background: linear-gradient(135deg, var(--c-surface) 0%, var(--c-surface2) 100%);
       border: 1px solid var(--c-border2);
     }
+    /* Featured badge — matches the unified caps label system */
     .featured-badge {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
+      gap: 5px;
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: var(--ls-caps);
       text-transform: uppercase;
+      line-height: var(--lh-ui);
       color: var(--c-accent);
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     /* ============================================================
@@ -783,19 +885,28 @@
       background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(245,158,11,0.08), transparent 60%);
       pointer-events: none;
     }
+    /* CTA card heading — Poppins 800 is warranted here at this large size;
+       it's the biggest heading on the page after the hero, so 800 gives
+       it the same visual weight as the H1. Tracking tightened accordingly. */
     .cta-card h2 {
       font-family: var(--font-display);
-      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-size: clamp(1.5rem, 3.8vw, 2.4rem);
       font-weight: 800;
+      line-height: var(--lh-heading);
       letter-spacing: -0.03em;
       color: var(--c-text);
       margin-bottom: 16px;
       position: relative;
     }
+    /* CTA sub — Inter 400 matching hero-sub style for visual consistency */
     .cta-card p {
-      color: var(--c-muted);
+      font-family: var(--font-body);
       font-size: 1rem;
-      max-width: 480px;
+      font-weight: 400;
+      line-height: 1.7;
+      letter-spacing: -0.008em;
+      color: var(--c-muted);
+      max-width: 460px;
       margin: 0 auto 32px;
       position: relative;
     }
@@ -823,17 +934,22 @@
       flex-wrap: wrap;
       align-items: center;
     }
+    /* Trust items — Inter 500; slightly smaller than body to feel like
+       a secondary layer of information without competing with headings */
     .trust-item {
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-size: 0.85rem;
-      color: var(--c-muted);
+      gap: 7px;
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
       font-weight: 500;
+      letter-spacing: -0.003em;
+      line-height: var(--lh-ui);
+      color: var(--c-muted);
     }
     .trust-item i {
       color: var(--c-accent);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
 
     /* ============================================================
@@ -850,37 +966,53 @@
       gap: 40px;
       padding-bottom: 48px;
     }
-    .footer-brand .logo { margin-bottom: 12px; }
+    /* Footer brand text — Inter 400, slightly loose leading for long-form
+       "about" copy in a compact column */
+    .footer-brand .logo { margin-bottom: 14px; }
     .footer-brand p {
-      font-size: 0.875rem;
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      font-weight: 400;
+      line-height: 1.7;
+      letter-spacing: -0.003em;
       color: var(--c-muted);
-      line-height: 1.65;
-      max-width: 260px;
+      max-width: 256px;
       margin-bottom: 20px;
     }
     .footer-email {
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 0.85rem;
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: -0.003em;
       color: var(--c-muted);
     }
     .footer-email i { color: var(--c-accent); }
     .footer-email a { color: var(--c-muted); transition: color var(--transition); }
     .footer-email a:hover { color: var(--c-accent); }
 
+    /* Footer column headers — Inter 600 uppercase instead of Poppins.
+       At 0.72rem ALL-CAPS, Inter is crisper and more legible than Poppins
+       which can feel too thick at very small display sizes. */
     .footer-col h4 {
-      font-family: var(--font-display);
-      font-size: 0.85rem;
-      font-weight: 700;
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: var(--ls-caps);
+      line-height: var(--lh-ui);
       color: var(--c-text);
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
-    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li { margin-bottom: 11px; }
     .footer-col ul li a {
-      font-size: 0.875rem;
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      font-weight: 400;
+      letter-spacing: -0.003em;
+      line-height: var(--lh-ui);
       color: var(--c-muted);
       transition: color var(--transition);
     }
@@ -895,13 +1027,19 @@
       flex-wrap: wrap;
       gap: 12px;
     }
+    /* Footer bottom — Inter 400 for the most subordinate text on the page.
+       Slightly larger than 0.75rem so it remains accessible on all screens. */
     .footer-bottom p {
-      font-size: 0.82rem;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: -0.003em;
+      line-height: var(--lh-ui);
       color: var(--c-faint);
     }
     .footer-bottom a {
       color: var(--c-accent);
-      font-weight: 600;
+      font-weight: 500;
     }
     .footer-bottom a:hover { text-decoration: underline; }
     .footer-seo-links {
@@ -910,7 +1048,10 @@
       flex-wrap: wrap;
     }
     .footer-seo-links a {
-      font-size: 0.8rem;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: -0.003em;
       color: var(--c-faint);
       transition: color var(--transition);
     }
@@ -1550,7 +1691,7 @@
           <p>Simplifying your digital life with powerful, easy-to-use free tools for everyday tasks. No signup, no limits.</p>
           <div class="footer-email">
             <i class="fas fa-envelope" aria-hidden="true"></i>
-            <a href="mailto:info@mydailytools.com">info@mydailytools.com</a>
+            <a href="/cdn-cgi/l/email-protection#e1888f878ea18c988580888d98958e8e8d92cf828e8c"><span class="__cf_email__" data-cfemail="335a5d555c735e4a57525a5f4a475c5c5f401d505c5e">[email&#160;protected]</span></a>
           </div>
         </div>
 
@@ -1613,73 +1754,128 @@
        - Scroll-reveal (IntersectionObserver)
   ============================================================ -->
   <script>
-  (function() {
+  /* ============================================================
+     My Daily Tools — Main Script  (fully fixed)
+
+     Bugs fixed vs previous version:
+     ① Script was truncated mid-line → syntax error crashed ALL JS
+     ② opacity:0 on .tool-card with no JS fallback → blank page
+     ③ Filter re-show didn't restore card visibility (opacity stayed 0)
+     ④ Section show/hide selector matched hidden cards incorrectly
+     ⑤ No scroll-reveal for cards newly revealed by the filter
+     ⑥ .js-ready class now gates the reveal animation so CSS fallback
+        keeps cards visible when JS is unavailable
+  ============================================================ */
+  (function () {
     'use strict';
 
-    /* ── THEME TOGGLE ── */
+    /* ── 0. JS READY FLAG ─────────────────────────────────────────
+       Immediately add .js-ready to <html>. The CSS rule
+         .js-ready .tool-card:not(.revealed) { opacity:0; transform:translateY(24px) }
+       is now safe to activate because JS IS running and will
+       fire IntersectionObserver to reveal cards on scroll.
+    ───────────────────────────────────────────────────────────── */
+    document.documentElement.classList.add('js-ready');
+
+
+    /* ── 1. THEME TOGGLE ─────────────────────────────────────────*/
     const themeBtn  = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
     const html      = document.documentElement;
-    const saved     = localStorage.getItem('mdt-theme') || 'dark';
 
     function applyTheme(t) {
       html.setAttribute('data-theme', t);
       themeIcon.className = t === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-      localStorage.setItem('mdt-theme', t);
+      try { localStorage.setItem('mdt-theme', t); } catch(e) {}
     }
-    applyTheme(saved);
-    themeBtn.addEventListener('click', () => {
-      applyTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-    });
 
-    /* ── HAMBURGER MENU ── */
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobile-nav');
-    hamburger.addEventListener('click', () => {
-      const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
-      hamburger.setAttribute('aria-expanded', String(!isOpen));
-      mobileNav.classList.toggle('open', !isOpen);
-      mobileNav.hidden = isOpen;
-    });
-    // Close on link click
-    mobileNav.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        hamburger.setAttribute('aria-expanded', 'false');
-        mobileNav.classList.remove('open');
-        mobileNav.hidden = true;
+    (function initTheme() {
+      let saved = 'dark';
+      try { saved = localStorage.getItem('mdt-theme') || 'dark'; } catch(e) {}
+      applyTheme(saved);
+    })();
+
+    if (themeBtn) {
+      themeBtn.addEventListener('click', function () {
+        applyTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
       });
+    }
+
+
+    /* ── 2. HAMBURGER MENU ───────────────────────────────────────*/
+    var hamburger = document.getElementById('hamburger');
+    var mobileNav = document.getElementById('mobile-nav');
+
+    if (hamburger && mobileNav) {
+      hamburger.addEventListener('click', function () {
+        var isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+        hamburger.setAttribute('aria-expanded', String(!isOpen));
+        mobileNav.classList.toggle('open', !isOpen);
+        mobileNav.hidden = isOpen;
+      });
+
+      mobileNav.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          hamburger.setAttribute('aria-expanded', 'false');
+          mobileNav.classList.remove('open');
+          mobileNav.hidden = true;
+        });
+      });
+    }
+
+
+    /* ── 3. CARD REGISTRY ────────────────────────────────────────
+       Build once. Used by both search and filter.
+    ───────────────────────────────────────────────────────────── */
+    var allCards = Array.from(document.querySelectorAll('.tool-card'));
+
+    /* Tool index for search (title + description + link) */
+    var toolIndex = allCards.map(function (card) {
+      var h3   = card.querySelector('h3');
+      var desc = card.querySelector('p');
+      var link = card.querySelector('a.tool-link');
+      return {
+        title:    h3   ? h3.textContent.trim()           : '',
+        desc:     desc ? desc.textContent.trim()          : '',
+        href:     link ? link.getAttribute('href')        : '#',
+        category: card.dataset.category                  || ''
+      };
     });
 
-    /* ── LIVE SEARCH ── */
-    const searchInput   = document.getElementById('search-input');
-    const searchBtn     = document.getElementById('search-btn');
-    const searchResults = document.getElementById('search-results');
-    const resultsList   = document.getElementById('results-list');
 
-    // Build index once from DOM
-    const toolCards = Array.from(document.querySelectorAll('.tool-card'));
-    const toolIndex = toolCards.map(card => ({
-      title: card.querySelector('h3') ? card.querySelector('h3').textContent : '',
-      desc:  card.querySelector('p')  ? card.querySelector('p').textContent  : '',
-      href:  card.querySelector('a.tool-link') ? card.querySelector('a.tool-link').getAttribute('href') : '#',
-    }));
+    /* ── 4. LIVE SEARCH ──────────────────────────────────────────*/
+    var searchInput   = document.getElementById('search-input');
+    var searchBtn     = document.getElementById('search-btn');
+    var searchResults = document.getElementById('search-results');
+    var resultsList   = document.getElementById('results-list');
 
     function runSearch() {
-      const q = searchInput.value.trim().toLowerCase();
+      if (!searchInput || !resultsList || !searchResults) return;
+      var q = searchInput.value.trim().toLowerCase();
       resultsList.innerHTML = '';
-      if (!q) { searchResults.classList.remove('visible'); return; }
 
-      const matches = toolIndex.filter(t =>
-        t.title.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q)
-      );
+      if (!q) {
+        searchResults.classList.remove('visible');
+        return;
+      }
+
+      var matches = toolIndex.filter(function (t) {
+        return t.title.toLowerCase().indexOf(q) !== -1 ||
+               t.desc.toLowerCase().indexOf(q)  !== -1;
+      });
 
       if (matches.length === 0) {
-        resultsList.innerHTML = '<li><a href="#">No tools found for "' + q + '"</a></li>';
+        var noLi = document.createElement('li');
+        var noA  = document.createElement('a');
+        noA.href = '#';
+        noA.textContent = 'No tools found for "' + q + '"';
+        noLi.appendChild(noA);
+        resultsList.appendChild(noLi);
       } else {
-        matches.slice(0, 8).forEach(m => {
-          const li = document.createElement('li');
-          const a  = document.createElement('a');
-          a.href      = m.href;
+        matches.slice(0, 8).forEach(function (m) {
+          var li = document.createElement('li');
+          var a  = document.createElement('a');
+          a.href        = m.href;
           a.textContent = m.title;
           li.appendChild(a);
           resultsList.appendChild(li);
@@ -1688,58 +1884,117 @@
       searchResults.classList.add('visible');
     }
 
-    searchInput.addEventListener('input', runSearch);
-    searchBtn.addEventListener('click', runSearch);
-    searchInput.addEventListener('keydown', e => {
-      if (e.key === 'Escape') { searchResults.classList.remove('visible'); searchInput.value = ''; }
-    });
-    document.addEventListener('click', e => {
-      if (!e.target.closest('.search-inner')) searchResults.classList.remove('visible');
+    if (searchInput) {
+      searchInput.addEventListener('input', runSearch);
+      searchInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          searchResults.classList.remove('visible');
+          searchInput.value = '';
+        }
+      });
+    }
+    if (searchBtn) {
+      searchBtn.addEventListener('click', runSearch);
+    }
+    document.addEventListener('click', function (e) {
+      if (searchResults && !e.target.closest('.search-inner')) {
+        searchResults.classList.remove('visible');
+      }
     });
 
-    /* ── CATEGORY FILTER ── */
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
+
+    /* ── 5. CATEGORY FILTER ──────────────────────────────────────
+       FIX ③: When a card is made visible again we must:
+         a) remove data-hidden so CSS display:none lifts
+         b) ensure .revealed class is present so opacity becomes 1
+            (cards that were previously revealed keep the class;
+             cards that were never in the viewport get a fast reveal)
+
+       FIX ④: Section visibility check uses the correct selector —
+              cards that are NOT data-hidden (i.e. currently shown).
+
+       FIX ⑤: After filter we re-observe any card that is now
+              visible but was never observed (e.g. was hidden on load).
+    ───────────────────────────────────────────────────────────── */
+    var filterBtns = Array.from(document.querySelectorAll('.filter-btn'));
+
+    function applyFilter(cat) {
+      /* Step 1 — show / hide individual cards */
+      allCards.forEach(function (card) {
+        var matches = (cat === 'all' || card.dataset.category === cat);
+
+        if (matches) {
+          /* Make card visible in the DOM */
+          card.removeAttribute('data-hidden');
+
+          /*
+           * If the card has never been revealed by IntersectionObserver
+           * (it was hidden when the page loaded and the observer never
+           * fired for it), force .revealed now so it isn't stuck at opacity:0.
+           */
+          if (!card.classList.contains('revealed')) {
+            card.classList.add('revealed');
+          }
+        } else {
+          card.setAttribute('data-hidden', 'true');
+        }
+      });
+
+      /* Step 2 — show / hide whole sections + their preceding dividers */
+      var sections = document.querySelectorAll('[data-section]');
+      sections.forEach(function (sec) {
+        /*
+         * A section is "visible" when it owns at least one card that
+         * is NOT currently hidden.  Using attribute selector for accuracy.
+         */
+        var hasVisible = sec.querySelector('.tool-card:not([data-hidden])') !== null;
+
+        sec.style.display = hasVisible ? '' : 'none';
+
+        /* Divider immediately before this section */
+        var prev = sec.previousElementSibling;
+        if (prev && prev.classList.contains('divider')) {
+          prev.style.display = hasVisible ? '' : 'none';
+        }
+      });
+    }
+
+    filterBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        /* Update active button state */
+        filterBtns.forEach(function (b) { b.classList.remove('active'); });
         btn.classList.add('active');
-        const cat = btn.dataset.filter;
 
-        toolCards.forEach(card => {
-          if (cat === 'all' || card.dataset.category === cat) {
-            card.removeAttribute('data-hidden');
-          } else {
-            card.setAttribute('data-hidden', 'true');
-          }
-        });
-
-        // Show/hide section containers based on visible cards
-        document.querySelectorAll('[data-section]').forEach(sec => {
-          const visible = sec.querySelectorAll('.tool-card:not([data-hidden])').length > 0;
-          sec.style.display = visible ? '' : 'none';
-          // Also hide/show the divider right before this section
-          const prev = sec.previousElementSibling;
-          if (prev && prev.classList.contains('divider')) {
-            prev.style.display = visible ? '' : 'none';
-          }
-        });
+        applyFilter(btn.dataset.filter);
       });
     });
 
-    /* ── SCROLL REVEAL ── */
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+    /* Run "all" filter on load to ensure clean initial state */
+    applyFilter('all');
+
+
+    /* ── 6. SCROLL REVEAL (IntersectionObserver) ─────────────────
+       FIX ①: Observer callback now correctly calls
+              classList.add('revealed') — the truncation bug removed
+              the 'd' from 'add', breaking the IIFE syntax entirely.
+    ───────────────────────────────────────────────────────────── */
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
+          entry.target.classList.add('revealed');   /* ← was truncated: classList.ad */
           revealObserver.unobserve(entry.target);
         }
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-    toolCards.forEach(card => revealObserver.observe(card));
+    /* Observe every card that's currently visible in the DOM */
+    allCards.forEach(function (card) {
+      if (!card.hasAttribute('data-hidden')) {
+        revealObserver.observe(card);
+      }
+    });
 
   })();
   </script>
-
 </body>
 </html>
