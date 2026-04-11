@@ -67,7 +67,7 @@
     "url": "https://mydailytools.com/",
     "contactPoint": {
       "@type": "ContactPoint",
-      "email": "info@mydailytools.com",
+      "email": "contact@mydailytools.store",
       "contactType": "customer support"
     }
   }
@@ -1085,6 +1085,45 @@
     }
 
     /* ============================================================
+       DESKTOP HERO ENHANCEMENT  (≥ 1025px only)
+       — Larger height, bigger heading, more generous padding.
+       — Zero effect on tablet (≤1024px) or mobile (≤640px).
+    ============================================================ */
+    @media (min-width: 1025px) {
+      .hero {
+        min-height: 88vh;
+        display: flex;
+        align-items: center;
+        padding: 120px 0 100px;
+      }
+      /* hero-inner already has position:relative/z-index:2;
+         flex-child needs to fill the column so content centres */
+      .hero-inner {
+        width: 100%;
+      }
+      /* Slightly larger H1 on big screens — stays within the
+         Poppins 800 weight already set; just lifts the clamp ceiling */
+      .hero h1 {
+        font-size: clamp(3rem, 5vw, 4.5rem);
+        margin-bottom: 28px;
+      }
+      /* A touch more breathing room under the subtitle */
+      .hero-sub {
+        font-size: 1.175rem;
+        margin-bottom: 52px;
+        max-width: 600px;
+      }
+      /* More vertical space between CTA row and stats */
+      .hero-cta-group {
+        margin-bottom: 72px;
+      }
+      /* Slightly larger stat numbers on wide screens */
+      .stat-num {
+        font-size: 2rem;
+      }
+    }
+
+    /* ============================================================
        RESPONSIVE — MOBILE
     ============================================================ */
     @media (max-width: 640px) {
@@ -1691,7 +1730,7 @@
           <p>Simplifying your digital life with powerful, easy-to-use free tools for everyday tasks. No signup, no limits.</p>
           <div class="footer-email">
             <i class="fas fa-envelope" aria-hidden="true"></i>
-            <a href="/cdn-cgi/l/email-protection#e1888f878ea18c988580888d98958e8e8d92cf828e8c"><span class="__cf_email__" data-cfemail="335a5d555c735e4a57525a5f4a475c5c5f401d505c5e">[email&#160;protected]</span></a>
+            <a href="mailto:contact@mydailytools.store">contact@mydailytools.store</a>
           </div>
         </div>
 
